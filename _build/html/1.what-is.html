@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '1.what-is';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -358,7 +360,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -374,6 +378,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-image-transformations">Spatial image transformations</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -399,6 +411,18 @@ document.write(`
 <p><span class="caption-number">Fig. 2 </span><span class="caption-text">Example of moving each voxel value to shift the location of the brain relative to the bounds of the image.</span><a class="headerlink" href="#move-voxels-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<p>Both of these examples illustrate how we alter images in different ways by simply changing voxel values using some criteria. Sometimes we apply changes identically to each voxel and sometimes those changes depend on the voxel values themselves. Either way, the image is altered in some fashion to suit our needs. From this we can define two broad categories of transformations. Those which move the voxel values within the image can be classed as <em>spatial transformations</em>, whereas those which change the voxel values without moving them can be classed as <em>image filters</em>. These two categories of manipulations will be the main focus of this lesson.</p>
+<section id="spatial-image-transformations">
+<h2>Spatial image transformations<a class="headerlink" href="#spatial-image-transformations" title="Link to this heading">#</a></h2>
+<p>Generally speaking, processing steps that move voxel values are concerned with how the voxel coordinates map onto the anatomy of the brain. The reason this is important is because a computer has no knowledge of anatomy. All the computer knows about are the voxel values and their coordinates within the data matrix. In order to derive any meaning from analysing an image, we have to make sure there is some meaningful correspondence between these coordinates and the anatomy of the brain.</p>
+<p>As an example, if we took two structural MR images straight from the scanner and selected voxel coordinates <span class="math notranslate nohighlight">\(\left[104, 167, 88\right]\)</span>, it is very unlikely that this voxel would correspond to the same anatomical location in both images. If we were to compare the voxel values from these coordinates across the two images then the comparison would be largely meaningless because of this lack of anatomical agreement. In order for there to be any meaningful connection between images, we need to spatially transform one of them by moving the voxel values around so that the same coordinates correspond to the same anatomical locations. This is illustrated in <a class="reference internal" href="#image-alignment-fig"><span class="std std-numref">Fig. 3</span></a>.</p>
+<figure class="align-default" id="image-alignment-fig">
+<a class="reference internal image-reference" href="_images/image-alignment.png"><img alt="_images/image-alignment.png" src="_images/image-alignment.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Illustration of how the same coordinates across two images are meaningless unless there is anatomical alignment between them.</span><a class="headerlink" href="#image-alignment-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -455,6 +479,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-image-transformations">Spatial image transformations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
