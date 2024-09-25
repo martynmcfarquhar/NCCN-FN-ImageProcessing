@@ -1,0 +1,1243 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>MATLAB and Linear Algebra &#8212; Computational Tools</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3.matlab-linear-algebra';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Summary" href="4.summary.html" />
+    <link rel="prev" title="Installing MATLAB and SPM" href="2.MATLAB-SPM.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="0.intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Computational Tools - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Computational Tools - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="0.intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.medical-images.html">Understanding Medical Images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.MATLAB-SPM.html">Installing MATLAB and SPM</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MATLAB and Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.summary.html">Summary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F3.matlab-linear-algebra.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/3.matlab-linear-algebra.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>MATLAB and Linear Algebra</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-matlab-prompt">The MATLAB Prompt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">Vectors and Matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors">Vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices">Matrices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-operations">Matrix Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#addition-and-subtraction">Addition and Subtraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplication">Multiplication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transposition">Transposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#division">Division</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-wise-operations">Element-wise Operations</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="matlab-and-linear-algebra">
+<h1>MATLAB and Linear Algebra<a class="headerlink" href="#matlab-and-linear-algebra" title="Link to this heading">#</a></h1>
+<p>As mentioned in the previous section, <code class="docutils literal notranslate"><span class="pre">SPM</span></code> is a software package that is built <em>on top</em> of the <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> scientific computing environment. Although possible to use <code class="docutils literal notranslate"><span class="pre">SPM</span></code> without any further knowledge of <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code>, there is an argument to be made for being at least a <em>bit</em> familiar with the <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> language. Unfortunately, we do not have time on this course for in-depth training on computer programming. However, we can start using <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> as a way of understanding some of the mathematical theory that we will need going forward. This will do double-duty as a way of getting familiar with <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code>, as well as a way of learning some mathematical concepts in a more interactive fashion.</p>
+<section id="the-matlab-prompt">
+<h2>The MATLAB Prompt<a class="headerlink" href="#the-matlab-prompt" title="Link to this heading">#</a></h2>
+<p>In order to communicate with <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code>, we use the <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> prompt. The prompt is signified in the Command Window by the two angled brackets <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>. These brackets indicate where we can type commands for <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> to interpret. We type something at the prompt, hit <kbd>ENTER</kbd> and then whatever we typed gets sent to the interpreter. If <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> understands what we typed, it will return the answer. If <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> does not understand what we typed, it will return an error.</p>
+<p>As an example, if we wanted to use <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> as a highly over-engineered calculator, we could ask what <span class="math notranslate nohighlight">\(3 \times 4\)</span> is by typing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>ans = 12</pre></body></html></div></div>
+</div>
+<p>However, if we accidentally typed <code class="docutils literal notranslate"><span class="pre">$</span></code> instead of <code class="docutils literal notranslate"><span class="pre">*</span></code>, we would get</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">3</span><span class="w"> </span><span class="s">$</span><span class="w"> </span><span class="s">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Invalid text character. Check for unsupported symbol, invisible character, or pasting of non-ASCII characters.
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this instance, MATLAB has return an error because it does not undestand what <code class="docutils literal notranslate"><span class="pre">$</span></code> means in this context.</p>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<p>Before getting into some of the key concepts of linear algebra, we first need to understand some programming fundamentals. One of the most basic characteristics of any programming language is the ability to store data in memory for later use. We do this by using <em>variables</em>, which you can think of as boxes with names that we can put data inside to keep for later. As an example, the code below shows the declaration of a variable called <code class="docutils literal notranslate"><span class="pre">a</span></code> and assigning it the number 5.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice here that we have used a semi-colon <code class="docutils literal notranslate"><span class="pre">;</span></code> at the end of the line to suppress <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> printing any output. In declaring the variable <code class="docutils literal notranslate"><span class="pre">a</span></code>, we have created a box that we have called <code class="docutils literal notranslate"><span class="pre">a</span></code> that contains the number <code class="docutils literal notranslate"><span class="pre">5</span></code>. Now, every time we type <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> will open this box and use whatever is inside it. As such, if we just type <code class="docutils literal notranslate"><span class="pre">a</span></code> we get</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>a = 5</pre></body></html></div></div>
+</div>
+<p>but if we do something with the returned value we get</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>ans = 12</pre></body></html></div></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tip</p>
+<p>Whenever a value is not explicitly assigned to a variable, <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> will automatically assign it to a default variable called <code class="docutils literal notranslate"><span class="pre">ans</span></code> (for <em>answer</em>).</p>
+</div>
+<p>Similarly, we could declare another variable with the name <code class="docutils literal notranslate"><span class="pre">b</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and then add <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> together</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>ans = 15</pre></body></html></div></div>
+</div>
+<p>Although these examples are quite trivial, the power of variables means that we can create code where we do not know the values of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>. Perhaps their value depends upon the data we are using? Or perhaps it depends on some other factor that may change each time the code runs? Either way, it does not really matter what value they have if we know that we want to add them together. Thus we can write generic code that can be used irrespective of what the inputs will be.</p>
+<div class="tip admonition">
+<p class="admonition-title">Tip</p>
+<p>There are rules about naming variables. A variable name cannot start with a number, it cannot contain spaces and the only special character you can use is an underscore. You also need to be aware that <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> is case-sensitive, meaning that <code class="docutils literal notranslate"><span class="pre">variable_a</span></code> and <code class="docutils literal notranslate"><span class="pre">VARIABLE_A</span></code> will be interpreted as different entities. In addition, remember that a variable can only hold one thing at a time and if you re-assign a variable then the original value will be lost.</p>
+</div>
+</section>
+<section id="vectors-and-matrices">
+<h2>Vectors and Matrices<a class="headerlink" href="#vectors-and-matrices" title="Link to this heading">#</a></h2>
+<p>Now that we have the idea of variables in mind, we can move on to understanding some basic principles of linear algebra. Just to reiterate, these are concepts that we will need going forward on the course. As such, it is important to gain some familiarity at this point, even though the context will be missing. Just try and get a feel for some of these ideas and have a go at feeding the code into <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code>. We will start to see all of this in action as the course progresses.</p>
+<p>To begin with, the most fundamental entities in linear algebra are <em>vectors</em> and <em>matrices</em>. We will be using these a lot on this course, so it is important to both understand what a vector or matrix is, as well as understanding how they can be manipulated.</p>
+<section id="vectors">
+<h3>Vectors<a class="headerlink" href="#vectors" title="Link to this heading">#</a></h3>
+<p>A vector is simply a list of numbers. For instance</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{a} = \begin{bmatrix}3 &amp; 4 &amp; 5\end{bmatrix}.
+\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is a 3-dimensional row vector with elements 3, 4 and 5. We can refer to the individual elements using <em>subscripts</em>. For instance, <span class="math notranslate nohighlight">\(a_{1} = 3\)</span>, <span class="math notranslate nohighlight">\(a_{2} = 4\)</span> and so on. Typically, a vector is written as a <strong>bold</strong> lower-case letter. A vector can also be defined as a <em>column</em> of numbers, for instance</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{b} = 
+\begin{bmatrix}
+    6 \\  
+    7 \\ 
+    8 \\
+\end{bmatrix}.
+\end{split}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is a 3-dimensional column-vector with elements <span class="math notranslate nohighlight">\(b_{1} = 6\)</span>, <span class="math notranslate nohighlight">\(b_{2} = 7\)</span> and <span class="math notranslate nohighlight">\(b_{3} = 8\)</span>. Although the orientation of a vector may seem like a trivial detail, we will soon see that this is very important.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code>, a vector is defined using a list of numbers between square brackets. For instance, we can define the vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> in <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>a = 1×3 double
+     3     4     5
+</pre></body></html></div></div>
+</div>
+<p>which tells us that <code class="docutils literal notranslate"><span class="pre">a</span></code> is a <span class="math notranslate nohighlight">\(1 \times 3\)</span> vector of <a class="reference external" href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">double-precision</a> values. We can access the individual elements using curved brackets</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>ans = 3</pre></body></html></div></div>
+</div>
+<p>or provide a range of indices to return multiple values, using the <code class="docutils literal notranslate"><span class="pre">:</span></code> syntax</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>ans = 1×2 double
+     4     5
+</pre></body></html></div></div>
+</div>
+<p>which will return all the values of <code class="docutils literal notranslate"><span class="pre">a</span></code> between index <code class="docutils literal notranslate"><span class="pre">2</span></code> and index <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
+<p>We can create a column vector by designating new rows with <code class="docutils literal notranslate"><span class="pre">;</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"> </span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>b = 3×1 double
+     6
+     7
+     8
+</pre></body></html></div></div>
+</div>
+<p>and, similarly, we can access individual elements using curved brackets</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>ans = 2×1 double
+     6
+     7
+</pre></body></html></div></div>
+</div>
+</section>
+<section id="matrices">
+<h3>Matrices<a class="headerlink" href="#matrices" title="Link to this heading">#</a></h3>
+<p>A matrix is simply a collection of vectors. We can either think of a matrix as a collection of column-vectors, or as a collection of row-vectors. Either way, a matrix has multiple rows <em>and</em> multiple columns. For instance</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A} = 
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>is a <span class="math notranslate nohighlight">\(2 \times 3\)</span> matrix consisting of elements <span class="math notranslate nohighlight">\(a_{11} = 1\)</span>, <span class="math notranslate nohighlight">\(a_{12} = 2\)</span> and so on. We can refer to any element generically as <span class="math notranslate nohighlight">\(a_{ij}\)</span> for row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>. Typically, matrices are written as upper-case <strong>bold</strong> letters, to distinguish them from vectors.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code>, we declare matrices using square brackets and a combination of spaces and semi-colons. For example, we could declare <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> using</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="s">5</span><span class="w"> </span><span class="s">6]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>A = 2×3 double
+     1     2     3
+     4     5     6
+</pre></body></html></div></div>
+</div>
+<p>We can also make this declaration look more like a matrix using the MATLAB line-continuation syntax</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="k">...</span>
+<span class="w">     </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="matrix-operations">
+<h2>Matrix Operations<a class="headerlink" href="#matrix-operations" title="Link to this heading">#</a></h2>
+<p>Beyond being containers for collections of numbers, matrices and vectors are <em>mathematical objects</em>, that we can treat in similar fashion to regular numbers. As such, arithmetic operations such as addition or subtraction all have matrix equivalents. However, these equivalents may not be particularly intuitive, as we will see below.</p>
+<section id="addition-and-subtraction">
+<h3>Addition and Subtraction<a class="headerlink" href="#addition-and-subtraction" title="Link to this heading">#</a></h3>
+<p>Starting with addition and subtraction, two matrices can be added or subtracted if they are the same dimensions. In this case, the operation is defined as the addition or subtraction of each individual element. For instance, for a matrix with <span class="math notranslate nohighlight">\(m\)</span> rows and <span class="math notranslate nohighlight">\(n\)</span> columns, we can write that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{C} = \mathbf{A} + \mathbf{B} =
+\begin{bmatrix}
+a_{11} + b_{11} &amp; a_{12} + b_{12} &amp; \dots  &amp; a_{1n} + b_{1n} \\
+a_{21} + b_{21} &amp; a_{22} + b_{22} &amp; \dots  &amp; a_{2n} + b_{2n} \\
+\vdots          &amp; \vdots          &amp; \ddots &amp; \vdots          \\
+a_{m1} + b_{m1} &amp; a_{m2} + b_{m2} &amp; \dots  &amp; a_{mn} + b_{mn} \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>where the ellipses (<span class="math notranslate nohighlight">\(\dots\)</span>) just mean “continue the pattern along this direction”. In this example, the row indices run from <span class="math notranslate nohighlight">\(i = 1,\dots,m\)</span> and the column indices run from <span class="math notranslate nohighlight">\(j = 1,\dots,n\)</span>. We can see this in <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="s">5</span><span class="w"> </span><span class="s">6]</span><span class="p">;</span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="s">6</span><span class="w"> </span><span class="s">7]</span><span class="p">;</span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>C = 2×3 double
+     3     5     7
+     9    11    13
+</pre></body></html></div></div>
+</div>
+<p>where the result <code class="docutils literal notranslate"><span class="pre">C</span></code> is the same as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="w"> </span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="w"> </span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="mi">4</span><span class="o">+</span><span class="mi">5</span><span class="w"> </span><span class="mi">5</span><span class="o">+</span><span class="mi">6</span><span class="w"> </span><span class="mi">6</span><span class="o">+</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>C = 2×3 double
+     3     5     7
+     9    11    13
+</pre></body></html></div></div>
+</div>
+<p>Matrix subtraction works in much the same way, so we have</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{C} = \mathbf{A} - \mathbf{B}
+\]</div>
+<p>which, again, is only defined when <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> have the same dimensions. For instance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="s">2</span><span class="w"> </span><span class="s">3]</span><span class="p">;</span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="s">6</span><span class="w"> </span><span class="s">7]</span><span class="p">;</span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>C = 2×3 double
+    -1     1     2
+    -2    -4    -4
+</pre></body></html></div></div>
+</div>
+<p>If we try to add/subtract matrices of different dimensions <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> will throw an error</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="s">6</span><span class="w"> </span><span class="s">7</span><span class="p">;</span><span class="w"> </span><span class="n">8</span><span class="w"> </span><span class="s">9</span><span class="w"> </span><span class="s">6]</span><span class="p">;</span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">6</span><span class="w"> </span><span class="s">5]</span><span class="p">;</span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Arrays have incompatible sizes for this operation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Formally, we say that addition or subtraction is <em>undefined</em> for matrices of different dimensions. Thus, we can see that the rules that govern what we can and cannot do with matrices are stricter than we may be used to with regular numbers.</p>
+</section>
+<section id="multiplication">
+<h3>Multiplication<a class="headerlink" href="#multiplication" title="Link to this heading">#</a></h3>
+<p>Multiplication of matrices is also possible, however, this is a more complex operation than addition/subtraction. To begin with, multiplying a matrix by a single number simply <em>scales</em> the matrix by that amount. As such, in the world of linear algebra, single numbers are often called <em>scalars</em>. For instance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="s">5</span><span class="w"> </span><span class="s">6]</span><span class="p">;</span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>B = 2×3 double
+     2     4     6
+     8    10    12
+</pre></body></html></div></div>
+</div>
+<p>Unfortunately, that is where the simplicity ends. Let us consider the case of multiplying two matrices. For example</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A} = 
+\begin{bmatrix}
+    1 &amp; 2 &amp; 3 \\
+    4 &amp; 5 &amp; 6
+\end{bmatrix} \quad
+\mathbf{B} = 
+\begin{bmatrix}
+    7  &amp; 8  \\
+    9  &amp; 10 \\
+    11 &amp; 12
+\end{bmatrix}
+\end{split}\]</div>
+<p>You may notice that these are different dimensions, which is something that will be explained soon. To begin with, let us see what <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> tells us <span class="math notranslate nohighlight">\(\mathbf{A} \times \mathbf{B}\)</span> is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="s">5</span><span class="w"> </span><span class="s">6]</span><span class="p">;</span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">9</span><span class="w"> </span><span class="s">10</span><span class="p">;</span><span class="w"> </span><span class="n">11</span><span class="w"> </span><span class="s">12]</span><span class="p">;</span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">A</span><span class="o">*</span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>C = 2×2 double
+    58    64
+   139   154
+</pre></body></html></div></div>
+</div>
+<p>You might want to take a moment to ponder this result and see if you can work out how <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> got there.</p>
+<p>To see how this multiplication works, start with the first <em>row</em> of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the first <em>column</em> of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. Each element in the row must be multiplied by each element in the column and then added together. In this example, we do <span class="math notranslate nohighlight">\((1 \times 7) + (2 \times 9) + (3 \times 11) = 58\)</span>. This sum then becomes the result for the first element of the new matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    1           &amp; 2           &amp; 3           \\
+    \phantom{4} &amp; \phantom{5} &amp; \phantom{6} \\
+\end{bmatrix} \times
+\begin{bmatrix}
+    7  &amp; \phantom{8}  \\
+    9  &amp; \phantom{10} \\
+    11 &amp; \phantom{12} \\
+\end{bmatrix} =
+\begin{bmatrix}
+    58            &amp; \phantom{64}  \\
+    \phantom{139} &amp; \phantom{154} \\
+\end{bmatrix}.
+\end{split}\]</div>
+<p>We then do the same thing with the first <em>row</em> of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the second <em>column</em> of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    1           &amp; 2           &amp; 3           \\
+    \phantom{4} &amp; \phantom{5} &amp; \phantom{6} \\
+\end{bmatrix} \times
+\begin{bmatrix}
+    \phantom{7}  &amp; 8  \\
+    \phantom{9}  &amp; 10 \\
+    \phantom{11} &amp; 12 \\
+\end{bmatrix} =
+\begin{bmatrix}
+    58            &amp; 64  \\
+    \phantom{139} &amp; \phantom{154} \\
+\end{bmatrix},
+\end{split}\]</div>
+<p>then the second <em>row</em> of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the first <em>column</em> of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    \phantom{1} &amp; \phantom{2} &amp; \phantom{3} \\
+    4           &amp; 5           &amp; 6 \\
+\end{bmatrix} \times
+\begin{bmatrix}
+    7  &amp; \phantom{8}  \\
+    9  &amp; \phantom{10} \\
+    11 &amp; \phantom{12} \\
+\end{bmatrix} =
+\begin{bmatrix}
+    58  &amp; 64  \\
+    139 &amp; \phantom{154} \\
+\end{bmatrix}.
+\end{split}\]</div>
+<p>Finally, we do the second <em>row</em> of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the second <em>column</em> of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    \phantom{1} &amp; \phantom{2} &amp; \phantom{3} \\
+    4           &amp; 5           &amp; 6 \\
+\end{bmatrix} \times
+\begin{bmatrix}
+    \phantom{7}  &amp; 8  \\
+    \phantom{9}  &amp; 10 \\
+    \phantom{11} &amp; 12 \\
+\end{bmatrix} =
+\begin{bmatrix}
+    58  &amp; 64  \\
+    139 &amp; 154 \\
+\end{bmatrix}.
+\end{split}\]</div>
+<p>If this is the first time you have come across matrix multiplication, this will seem very strange. For a deeper explanation of why this is the case, have a look at the info box below. However, the important thing to know from a practical perspective is that matrix-matrix, matrix-vector, vector-matrix and vector-vector multiplication are only defined when the number of <em>columns</em> in <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> matches the number of <em>rows</em> in <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. In addition, the resultant matrix will always have the same number of <em>rows</em> as <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the same number of <em>columns</em> as <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Advanced: Why is Matrix Multiplication So Strange?</p>
+<p>To understand why matrix multiplication has the definition that it does, we need to first understand that linear algebra is all about <em>linear equations</em>. A linear equation is simply an equation where some numbers are multiplied by other numbers and then added together to form a weighted-sum. For example, the equation below is a linear equation</p>
+<div class="math notranslate nohighlight">
+\[
+y = a_{1}x_{1} + a_{2}x_{2} + b
+\]</div>
+<p>where there are two <em>variables</em> (<span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span>) and three <em>coefficients</em> (<span class="math notranslate nohighlight">\(a_{1}\)</span>, <span class="math notranslate nohighlight">\(a_{2}\)</span> and <span class="math notranslate nohighlight">\(b\)</span>). Each variable is multiplied by its respective coefficient and then everything is added together to form the value of y. The important point here is that the variables can take on any value (hence they can <em>vary</em>), whereas the coefficients are usually fixed.</p>
+<p>Linear equations are incredibly useful in many branches of science for describing real-world phenomena. Often <em>multiple</em> equations are needed to model complex phenomena, which is known as a <em>system</em> of linear equations. These equations share the same coefficients, but have different values for the variables. For example, take the following system of 3 equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y_{1} &amp;= a_{1}x_{11} + a_{2}x_{12} + b \\
+y_{2} &amp;= a_{1}x_{21} + a_{2}x_{22} + b \\
+y_{3} &amp;= a_{1}x_{31} + a_{2}x_{32} + b
+\end{split}\]</div>
+<p>Notice here that each equation has different <span class="math notranslate nohighlight">\(x\)</span> values (indicated by the different indices), but the same <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> values. The point of matrices is that they allow this system to be represented compactly <em>and</em> provides methods for solving for <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. To see this, we can write the system as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+y_{1} \\
+y_{2} \\
+y_{3}
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_{11} &amp; x_{12} &amp; 1 \\
+x_{21} &amp; x_{22} &amp; 1 \\
+x_{31} &amp; x_{32} &amp; 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1} \\
+a_{2} \\
+b
+\end{bmatrix},
+\end{split}\]</div>
+<p>which can be expressed simply as</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{y} = \mathbf{X}\mathbf{a}.
+\]</div>
+<p>If we use the definition of matrix multiplication, notice that this recreates the linear equations that define the system. For instance, the first row of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+x_{11}           &amp; x_{12}           &amp; 1           \\
+\phantom{x_{21}} &amp; \phantom{x_{22}} &amp; \phantom{1} \\
+\phantom{x_{31}} &amp; \phantom{x_{32}} &amp; \phantom{1} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1} \\
+a_{2} \\
+b
+\end{bmatrix} = 
+\begin{bmatrix}
+x_{11}a_{1} + x_{12}a_{2} + b \\
+\phantom{} \\
+\phantom{}
+\end{bmatrix}.
+\end{split}\]</div>
+<p>You can try this yourself for the remaining two rows. The important point here is that this only works because the rules of matrix multiplication make it work. So, the only way for a system of linear equations to be represented in matrices is by having a more convoluted definition of how multiplication works.</p>
+</div>
+</section>
+<section id="transposition">
+<h3>Transposition<a class="headerlink" href="#transposition" title="Link to this heading">#</a></h3>
+<p>As we have seen above, the dimensions of a matrix or vector are very important for determining when matrix multiplication can be performed. In practise, this means that the dimensions of matrices may need to be manipulated. One common approach is an operation called <em>transposition</em>, where the rows and the columns of a matrix are swapped. The notation for this is either <span class="math notranslate nohighlight">\(\mathbf{M}^{\prime}\)</span> or <span class="math notranslate nohighlight">\(\mathbf{M}^{T}\)</span> . So that if</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{M} = 
+\begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4 \\
+5 &amp; 6
+\end{bmatrix},
+\end{split}\]</div>
+<p>the transpose would be</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{M}^{\prime} = 
+\begin{bmatrix}
+1 &amp; 3 &amp; 5 \\
+2 &amp; 4 &amp; 6
+\end{bmatrix}.
+\end{split}\]</div>
+<p>You can do this in <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> using the <code class="docutils literal notranslate"><span class="pre">'</span></code> symbol</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="s">4</span><span class="p">;</span><span class="w"> </span><span class="n">5</span><span class="w"> </span><span class="s">6]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>M = 3×2 double
+     1     2
+     3     4
+     5     6
+</pre></body></html></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="o">&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>ans = 2×3 double
+     1     3     5
+     2     4     6
+</pre></body></html></div></div>
+</div>
+</section>
+<section id="division">
+<h3>Division<a class="headerlink" href="#division" title="Link to this heading">#</a></h3>
+<p>We have now covered matrix addition, subtraction and multiplication. So what about matrix division? Unfortunately, this is where things get complicated again. To start with, let us review a particular way of viewing division of normal numbers. As we should all know, division is simply splitting a number into equal parts. However, we can also view this as a <em>multiplication</em>. Specifically, multiplication by the <em>inverse</em> of another number. For instance</p>
+<div class="math notranslate nohighlight">
+\[
+10 \times \frac{1}{2} = 5
+\]</div>
+<p>because</p>
+<div class="math notranslate nohighlight">
+\[
+10 \times \frac{1}{2} = \frac{10}{1} \times \frac{1}{2} = \frac{10}{2} = 5.
+\]</div>
+<p>This is known as the <em>multiplicative inverse</em> of a number. Formally, the inverse is whatever number can be multiplied by the original number to make 1. For instance, the multiplicative inverse of 2 is <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> because <span class="math notranslate nohighlight">\(2 \times \frac{1}{2} = 1\)</span>. This is written as</p>
+<div class="math notranslate nohighlight">
+\[
+2^{-1} = \frac{1}{2}
+\]</div>
+<p>This is important because there is no definition of division for matrices. However, we know there is multiplication. As such, we perform division by multiplying one matrix by the <em>inverse</em> of another.</p>
+<p>So what is the <em>inverse</em> of a matrix? Like a regular number, it is a matrix that, when multiplied by the original matrix, equals the matrix equivalent of the number 1. So what is the matrix equivalent of the number 1? This is a special matrix called the <em>identity</em> matrix that contains 1’s on the diagonal and 0’s everywhere else.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{I} = 
+\begin{bmatrix}
+    1 &amp; 0 &amp; \dots &amp; 0 \\
+    0 &amp; 1 &amp; \dots &amp; 0 \\
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    0 &amp; 0 &amp; \dots &amp; 1
+\end{bmatrix}
+\end{split}\]</div>
+<p>If you multiply any matrix by the identity matrix, it does not change and hence is equivalent to the number 1. You can try this yourself in MATLAB using the <code class="docutils literal notranslate"><span class="pre">eye(n)</span></code> function to create an <span class="math notranslate nohighlight">\(n \times n\)</span> identity matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">I</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>I = 3×3 double
+     1     0     0
+     0     1     0
+     0     0     1
+</pre></body></html></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">4</span><span class="w"> </span><span class="s">5</span><span class="w"> </span><span class="s">6</span><span class="p">;</span><span class="w"> </span><span class="n">7</span><span class="w"> </span><span class="s">8</span><span class="w"> </span><span class="s">9]</span><span class="p">;</span>
+<span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">I</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>ans = 3×3 double
+     1     2     3
+     4     5     6
+     7     8     9
+</pre></body></html></div></div>
+</div>
+<p>The definition of the inverse of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is therefore the matrix that satisfies</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{A}\mathbf{A}^{-1} = \mathbf{I}.
+\]</div>
+<p>For example</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A} = 
+\begin{bmatrix}
+    4 &amp; 7 \\
+    2 &amp; 6
+\end{bmatrix} \quad
+\mathbf{A}^{-1} = 
+\begin{bmatrix}
+    \phantom{-}0.6 &amp; -0.7 \\
+    -0.2           &amp; \phantom{-}0.4
+\end{bmatrix},
+\end{split}\]</div>
+<p>because</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    4 &amp; 7 \\
+    2 &amp; 6
+\end{bmatrix} \times
+\begin{bmatrix}
+    \phantom{-}0.6 &amp; -0.7 \\
+    -0.2           &amp; \phantom{-}0.4
+\end{bmatrix} = 
+\begin{bmatrix}
+    1 &amp; 0 \\
+    0 &amp; 1
+\end{bmatrix}
+\end{split}\]</div>
+<p>In terms of finding an inverse, there are a multitude of algorithms available. However, we usually just trust <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> to do the right thing when we use the <code class="docutils literal notranslate"><span class="pre">inv()</span></code> function. For instance,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="s">6]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>A = 2×2 double
+     4     7
+     2     6
+</pre></body></html></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>ans = 2×2 double
+    0.6000   -0.7000
+   -0.2000    0.4000
+</pre></body></html></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>ans = 2×2 double
+    1.0000         0
+         0    1.0000
+</pre></body></html></div></div>
+</div>
+<p>The key thing we need to understand is that there are restrictions on finding an inverse. Firstly, a matrix must be <em>square</em> to be invertible. Secondly, even if it is square, not every matrix has an inverse. As such, some matrices are <em>fundamentally uninvertible</em>. As an example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">3</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">6</span><span class="p">;</span><span class="w"> </span><span class="n">7</span><span class="w"> </span><span class="s">2</span><span class="w"> </span><span class="s">9]</span><span class="p">;</span>
+<span class="nb">inv</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  4.111937e-18.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The reasons why this happens are beyond the scope of this lesson, but just know that in some cases we will not always be able to find a solution to an equation that contains a matrix inverse. We will see this more later in the course, but for now just known that matrix division is <em>tricky</em> and can get us in trouble if we are not careful.</p>
+</section>
+</section>
+<section id="element-wise-operations">
+<h2>Element-wise Operations<a class="headerlink" href="#element-wise-operations" title="Link to this heading">#</a></h2>
+<p>In the discussion above, you may have intuitively thought that both multiplication and division would be equivalent to addition and subtraction, in the sense that we could take two matrices of the same dimensions and either multiply or divide the individual elements. Although this is not the formal definition of either matrix multiplication or division, we can do this in <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> using <em>element-wise</em> operations. These are usually distinguished in code by using a <code class="docutils literal notranslate"><span class="pre">.</span></code> before the operation symbol.</p>
+<p>As an example, if we wanted to multiply the individual elements of two matrices we can use <code class="docutils literal notranslate"><span class="pre">.*</span></code> instead of <code class="docutils literal notranslate"><span class="pre">*</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">4</span><span class="w">  </span><span class="s">5</span><span class="w">  </span><span class="s">6]</span><span class="p">;</span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="n">10</span><span class="w"> </span><span class="s">11</span><span class="w"> </span><span class="s">12]</span><span class="p">;</span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>C = 2×3 double
+     7    16    27
+    40    55    72
+</pre></body></html></div></div>
+</div>
+<p>Similarly, to divide the elements we can use <code class="docutils literal notranslate"><span class="pre">./</span></code> instead of <code class="docutils literal notranslate"><span class="pre">/</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">4</span><span class="w">  </span><span class="s">5</span><span class="w">  </span><span class="s">6]</span><span class="p">;</span>
+<span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="n">10</span><span class="w"> </span><span class="s">11</span><span class="w"> </span><span class="s">12]</span><span class="p">;</span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">./</span><span class="w"> </span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>C = 2×3 double
+    0.1429    0.2500    0.3333
+    0.4000    0.4545    0.5000
+</pre></body></html></div></div>
+</div>
+<p>We will see how these element-wise operators can be very useful when working with imaging data, where the images themselves are respresented as matrices inside <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jupyter_matlab_kernel"
+        },
+        kernelOptions: {
+            name: "jupyter_matlab_kernel",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jupyter_matlab_kernel'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2.MATLAB-SPM.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Installing MATLAB and SPM</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4.summary.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Summary</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-matlab-prompt">The MATLAB Prompt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">Vectors and Matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors">Vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices">Matrices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-operations">Matrix Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#addition-and-subtraction">Addition and Subtraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplication">Multiplication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transposition">Transposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#division">Division</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-wise-operations">Element-wise Operations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Martyn McFarquhar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
