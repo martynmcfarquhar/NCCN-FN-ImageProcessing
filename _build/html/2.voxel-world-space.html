@@ -385,6 +385,34 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="voxel-space-and-world-space">
 <h1>Voxel-space and World-space<a class="headerlink" href="#voxel-space-and-world-space" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">image</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">spm_data_read</span><span class="p">(</span><span class="s">&#39;example_image.nii&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">figure</span><span class="p">;</span>
+<span class="nb">imagesc</span><span class="p">(</span><span class="nb">image</span><span class="p">(:,:,</span><span class="mi">110</span><span class="p">));</span>
+<span class="nb">colormap</span><span class="p">(</span><span class="s">&#39;gray&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bbc85e84a418f8d9bd3502b7c3cc58ae626b369a73a3b318d14f80000c32f629.png" src="_images/bbc85e84a418f8d9bd3502b7c3cc58ae626b369a73a3b318d14f80000c32f629.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">voxel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">image</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">110</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html><body><pre>voxel = 347.0026</pre></body></html></div></div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
