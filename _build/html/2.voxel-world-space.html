@@ -384,6 +384,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-matrix-indices">Data matrix indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#voxel-space">Voxel-space</a></li>
 </ul>
             </nav>
         </div>
@@ -430,6 +431,32 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html"><html><body><pre>ans = 347.0026</pre></body></html></div></div>
 </div>
+</section>
+<section id="voxel-space">
+<h2>Voxel-space<a class="headerlink" href="#voxel-space" title="Link to this heading">#</a></h2>
+<p>The approach of indexing the data matrix directly can be thought of as representing the image in <em>voxel-space</em>. This means that the voxels themselves form the coordinate system. The image dimensions are given in voxels, we index the image using voxel coordinates and the origin of the coordinate system is simply the first voxel saved in the image file.</p>
+<p>Of note is that the orientation of the image is based on the storage-order of the data on disk. This is usually dictated by the scanner and can differ from image to image. As such, there are no guarantees about which direction in the image correspond to which dimensions of the data matrix. For example, if we display a single slice of the example image we loaded above, we get</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">figure</span><span class="p">;</span>
+<span class="nb">imagesc</span><span class="p">(</span><span class="nb">image</span><span class="p">(:,:,</span><span class="mi">110</span><span class="p">)</span><span class="o">&#39;</span><span class="p">);</span><span class="w"> </span><span class="c">% transpose image as display convention is x = columns and y = rows</span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span><span class="s">&#39;YDir&#39;</span><span class="p">,</span><span class="s">&#39;normal&#39;</span><span class="p">);</span><span class="w"> </span><span class="c">% make sure y-axis runs bottom -&gt; top</span>
+<span class="nb">colormap</span><span class="p">(</span><span class="s">&#39;gray&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16e79e1c1c2164a636790f99c869f45afb387a23ee9e761612dd23c4e5f3ba0e.png" src="_images/16e79e1c1c2164a636790f99c869f45afb387a23ee9e761612dd23c4e5f3ba0e.png" />
+</div>
+</div>
+<p>Here we can see that the <span class="math notranslate nohighlight">\(x\)</span>-axis runs anterior-posterior, the <span class="math notranslate nohighlight">\(y\)</span>-axis runs inferior-superior and the slices run left-right. This goes against the typical convention in neuroimaging, as we will see below, but is entirely determined by how the scanner chooses to collect and save the data.</p>
+<p><a class="reference internal" href="#voxel-space-fig"><span class="std std-numref">Fig. 5</span></a> given an example of a functional slice displayed in voxel-space, where the grid and axes are given in voxel units and the voxel located at <span class="math notranslate nohighlight">\(y = 60\)</span> and <span class="math notranslate nohighlight">\(z = 20\)</span> has been highlighted.</p>
+<figure class="align-default" id="voxel-space-fig">
+<a class="reference internal image-reference" href="_images/voxel-space-func.png"><img alt="_images/voxel-space-func.png" src="_images/voxel-space-func.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Example of a functional slice displayed in voxel-space.</span><a class="headerlink" href="#voxel-space-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 
@@ -498,6 +525,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-matrix-indices">Data matrix indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#voxel-space">Voxel-space</a></li>
 </ul>
   </nav></div>
 
