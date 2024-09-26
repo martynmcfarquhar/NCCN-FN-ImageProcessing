@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '3.rigid-body';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -358,7 +360,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -374,6 +378,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-transformations">Affine Transformations</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -385,6 +397,51 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="rigid-body-transformations">
 <h1>Rigid-body Transformations<a class="headerlink" href="#rigid-body-transformations" title="Link to this heading">#</a></h1>
+<p>In the previous section, we introduced the idea of two different coordinates systems we can use when working with images. In order to use both systems, we need to be able to convert between them. So, we need to be able to take voxel coordinates and convert them into millimetres, as well as take millimetre coordinates and convert them into voxels.</p>
+<p>Very generally, the ability to transform coordinates from one system into another can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+    b_x &amp;= m_{11}a_x + m_{12}a_y + m_{13}a_z + m_{14} \\
+    b_y &amp;= m_{21}a_x + m_{22}a_y + m_{23}a_z + m_{24} \\
+    b_z &amp;= m_{31}a_x + m_{32}a_y + m_{33}a_z + m_{34} 
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_x\)</span>, <span class="math notranslate nohighlight">\(a_y\)</span>, <span class="math notranslate nohighlight">\(a_z\)</span> represent the original coordinates and <span class="math notranslate nohighlight">\(b_x\)</span>, <span class="math notranslate nohighlight">\(b_y\)</span>, <span class="math notranslate nohighlight">\(b_z\)</span> represent the transformed coordinates. You might recognise each new coordinate as a <em>linear combination</em> of the old coordinates and some values called <span class="math notranslate nohighlight">\(m\)</span>. You might also recognise that this is therefore a system of 3 linear equations, which can be represented using matrices. As such, we can compactly represent this transformation in the form <span class="math notranslate nohighlight">\(\mathbf{B} = \mathbf{MA}\)</span>, which we can expand to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+    b_x \\
+    b_y \\
+    b_z \\
+    1
+\end{bmatrix}
+=
+\begin{bmatrix}
+    m_{11} &amp; m_{12} &amp; m_{13} &amp; m_{14} \\
+    m_{21} &amp; m_{22} &amp; m_{23} &amp; m_{24} \\
+    m_{31} &amp; m_{32} &amp; m_{33} &amp; m_{34} \\
+    0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+    a_x \\
+    a_y \\
+    a_z \\
+    1
+\end{bmatrix}
+\end{split}\]</div>
+<p>where the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> contains the 12 parameters of the transformation (noticing that we have to add an extra row to make the matrix multiplication work). Multiplying a vector containing our original coordinates by <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> will give us the coordinates transformed into the alternative space. We can also use <span class="math notranslate nohighlight">\(\mathbf{M}^{-1}\)</span> to convert from the transformed coordinates back into the original coordinates using <span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{M}^{-1}\mathbf{B}\)</span>.</p>
+<section id="affine-transformations">
+<h2>Affine Transformations<a class="headerlink" href="#affine-transformations" title="Link to this heading">#</a></h2>
+<p>The parameters in the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> encode what is known as an <em>affine</em> transformation. The word affine means that parallel lines remain parallel after transformation. As such, operations such as bending are not allowed. Transformation can therefore only be constructed by combining:</p>
+<ul class="simple">
+<li><p>Translations</p></li>
+<li><p>Rotations</p></li>
+<li><p>Zooming/Scaling</p></li>
+<li><p>Shearing</p></li>
+</ul>
+<p>Examples of each of these operations are shown in {numref}``</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -441,6 +498,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-transformations">Affine Transformations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
