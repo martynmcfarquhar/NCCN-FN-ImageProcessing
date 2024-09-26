@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>What is Image Processing? &#8212; Image Processing</title>
   
@@ -28,13 +28,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -412,7 +412,7 @@ document.write(`
 <p><span class="caption-number">Fig. 2 </span><span class="caption-text">Example of moving each voxel value to shift the location of the brain relative to the bounds of the image.</span><a class="headerlink" href="#move-voxels-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Both of these examples illustrate how we alter images in different ways by simply changing voxel values using some criteria. Sometimes we apply changes identically to each voxel and sometimes those changes depend on the voxel values themselves. Either way, the image is altered in some fashion to suit our needs. From this we can define two broad categories of transformations. Those which move the voxel values within the image can be classed as <em>spatial transformations</em>, whereas those which change the voxel values without moving them can be classed as <em>image filters</em>. These two categories of manipulations will be the main focus of this lesson.</p>
+<p>Both of these examples illustrate how we alter images in different ways by simply changing voxel values using some criteria. Sometimes we apply changes identically to each voxel and sometimes those changes depend on the voxel values themselves. Either way, the image is altered in some fashion to suit our needs. From this we can define two broad categories of transformations. Those which move the voxel values within the image can be classed as <em>spatial transformations</em>, whereas those which change the voxel values without moving them can be classed as <em>image filters</em>.</p>
 <section id="spatial-image-transformations">
 <h2>Spatial Image Transformations<a class="headerlink" href="#spatial-image-transformations" title="Link to this heading">#</a></h2>
 <p>Generally speaking, processing steps that move voxel values are concerned with how the voxel coordinates map onto the anatomy of the brain. The reason this is important is because a computer has no knowledge of anatomy. All the computer knows about are the voxel values and their coordinates within the data matrix. In order to derive any meaning from analysing an image, we have to make sure there is some meaningful correspondence between these coordinates and the anatomy of the brain.</p>
