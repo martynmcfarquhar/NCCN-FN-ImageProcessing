@@ -400,8 +400,8 @@ document.write(`
 <p>In the first part of this lesson we are going to be focusing on <em>spatial transformations</em>. We will spend more time discussing this form of image processing as spatial methods are relevant to a much wider variety of analysis steps. Spatial transformations are also where more errors will occur, and so warrant more of our attention.</p>
 <section id="data-matrix-indices">
 <h2>Data matrix indices<a class="headerlink" href="#data-matrix-indices" title="Link to this heading">#</a></h2>
-<p>We can conceptualise an MRI image as a stack of 2D matrices, where each matrix in the stack is referred to as a <em>slice</em>. We can refer to any voxel using an index for each dimension of the matrix. Typically we refer to these dimensions as <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> corresponds to the <em>row</em>, <span class="math notranslate nohighlight">\(y\)</span> corresponds to the <em>column</em> and <span class="math notranslate nohighlight">\(z\)</span> corresponds to the <em>slice</em>. An index into an image is therefore a <em>triplet</em> of values that indicates how far along each of the dimensions we need to travel in order to find the value we want.</p>
-<p>As an example, the <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> code below shows the process of loading an image (which you can download from <a class="reference external" href="https://livemanchesterac.sharepoint.com/:u:/r/sites/UOM-FBMH-MSc-NCCN/Shared%20Documents/PCHN62141%20Functional%20Neuroanatomy/Learning%20Materials/Asynchronous/Week%204/2.%20Image%20Processing/Data/example_image.nii?csf=1&amp;amp;web=1&amp;amp;e=Haernk&amp;amp;download=1">here</a>) and then extracting a value using the voxel coordinates <span class="math notranslate nohighlight">\(x = 180\)</span>, <span class="math notranslate nohighlight">\(y = 180\)</span> and <span class="math notranslate nohighlight">\(z = 110\)</span>. This tells <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> that we want to travel <span class="math notranslate nohighlight">\(180\)</span> voxels along the <span class="math notranslate nohighlight">\(x\)</span> dimension, <span class="math notranslate nohighlight">\(180\)</span> voxels along the <span class="math notranslate nohighlight">\(y\)</span> dimension, <span class="math notranslate nohighlight">\(110\)</span> voxels along the <span class="math notranslate nohighlight">\(z\)</span> dimension and then extract the value found in that location. Alternatively, we can think of this as extracting the matrix at slice <span class="math notranslate nohighlight">\(110\)</span> and then finding row <span class="math notranslate nohighlight">\(180\)</span> and column <span class="math notranslate nohighlight">\(180\)</span>.</p>
+<p>We can conceptualise an MRI image as a 3D matrix (like a big cube), where we can refer to any voxel within the cube using an index along each dimension. Typically we refer to these dimensions as <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> corresponds to the <em>row</em>, <span class="math notranslate nohighlight">\(y\)</span> corresponds to the <em>column</em> and <span class="math notranslate nohighlight">\(z\)</span> corresponds to the <em>slice</em>. An index into an image is therefore a <em>triplet</em> of values that indicates how far along each of the dimensions we need to travel in order to find the value we want.</p>
+<p>As an example, the <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> code below shows the process of loading an image (which you can download from <a class="reference external" href="https://livemanchesterac.sharepoint.com/:u:/r/sites/UOM-FBMH-MSc-NCCN/Shared%20Documents/PCHN62141%20Functional%20Neuroanatomy/Learning%20Materials/Asynchronous/Week%204/2.%20Image%20Processing/Data/example_image.nii?csf=1&amp;amp;web=1&amp;amp;e=Haernk&amp;amp;download=1">here</a>) and then extracting a value using the voxel coordinates <span class="math notranslate nohighlight">\(x = 180\)</span>, <span class="math notranslate nohighlight">\(y = 180\)</span> and <span class="math notranslate nohighlight">\(z = 110\)</span>. This tells <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> that we want to travel <span class="math notranslate nohighlight">\(180\)</span> voxels along the <span class="math notranslate nohighlight">\(x\)</span> dimension, <span class="math notranslate nohighlight">\(180\)</span> voxels along the <span class="math notranslate nohighlight">\(y\)</span> dimension, <span class="math notranslate nohighlight">\(110\)</span> voxels along the <span class="math notranslate nohighlight">\(z\)</span> dimension and then extract the value found at that location.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">image</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">spm_data_read</span><span class="p">(</span><span class="s">&#39;example_image.nii&#39;</span><span class="p">);</span>
@@ -412,52 +412,23 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html"><html><body><pre>voxel = 347.0026</pre></body></html></div></div>
 </div>
-<p>Alternatively, we can think of this as extracting the matrix at slice <span class="math notranslate nohighlight">\(110\)</span> and then finding row <span class="math notranslate nohighlight">\(180\)</span> and column <span class="math notranslate nohighlight">\(180\)</span>.</p>
+<p>Alternatively, we can think of the image more like a stack of cards, where we first extract the matrix at slice <span class="math notranslate nohighlight">\(110\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">slice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">image</span><span class="p">(:,:,</span><span class="mi">110</span><span class="p">);</span>
-<span class="nb">slice</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and then find the value at row <span class="math notranslate nohighlight">\(180\)</span> and column <span class="math notranslate nohighlight">\(180\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">slice</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><html><body><pre>ans = 347.0026</pre></body></html></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">figure</span><span class="p">;</span>
-<span class="nb">imagesc</span><span class="p">(</span><span class="nb">image</span><span class="p">(:,:,</span><span class="mi">110</span><span class="p">));</span>
-<span class="nb">colormap</span><span class="p">(</span><span class="s">&#39;gray&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/7b79a2fe22684521ed8ec19291104cf86195ec96ae91b9590293daf8af9c4a46.png" src="_images/7b79a2fe22684521ed8ec19291104cf86195ec96ae91b9590293daf8af9c4a46.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">voxel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">image</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">110</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><html><body><pre>voxel = 347.0026</pre></body></html></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">hdr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">spm_data_hdr_read</span><span class="p">(</span><span class="s">&#39;example_image.nii&#39;</span><span class="p">);</span>
-<span class="n">hdr</span><span class="p">.</span><span class="n">mat</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><html><body><pre>ans = 4×4 double
-    0.0122    0.0027    1.1999 -107.6227
-   -0.7913    0.6113    0.0096   18.4938
-    0.6113    0.7914   -0.0116 -191.0988
-         0         0         0    1.0000
-</pre></body></html></div></div>
 </div>
 </section>
 </section>
