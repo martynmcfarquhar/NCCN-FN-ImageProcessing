@@ -581,20 +581,9 @@ q_{x} &amp; 0     &amp; 0     &amp; 0 \\
     1.0000
 </pre></body></html></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">spm_imatrix</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><html><body><pre>ans = 1x12 double
- -107.6227   18.4938 -191.0988    2.4460    1.5583    2.9241   -1.0000    1.0000    1.2000   -0.0000    0.0000    0.0000
-</pre></body></html></div></div>
-</div>
 <div class="dropdown admonition">
 <p class="admonition-title">Advanced: Breaking Down an <strong>M</strong> Matrix?</p>
-<p>SPM contains a function called <code class="docutils literal notranslate"><span class="pre">spm_imatrix</span></code> that takes an <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix as input and then returns the translation, rotation, scaling and shearing parameters for each axis. If you want to get a better understanding of how <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is formed, you can try running <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">spm_imatrix(M)</span></code> to extract the parameters, and then building the <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix from the equations given earlier. For instance, using <code class="docutils literal notranslate"><span class="pre">MT</span> <span class="pre">=</span> <span class="pre">[1</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">p(1);</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">0</span> <span class="pre">p(2);</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">p(3);</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1]</span></code>.</p>
+<p>SPM contains a function called <code class="docutils literal notranslate"><span class="pre">spm_imatrix</span></code> that takes an <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix as input and then returns the translation, rotation, scaling and shearing parameters for each axis. If you want to get a better understanding of how <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> is formed, you can try running <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">spm_imatrix(M)</span></code> to extract the parameters, and then building the <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix from the equations given earlier. For instance, you can form the matrix <span class="math notranslate nohighlight">\(\mathbf{M}_{T}\)</span> using <code class="docutils literal notranslate"><span class="pre">MT</span> <span class="pre">=</span> <span class="pre">[1</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">p(1);</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">0</span> <span class="pre">p(2);</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">p(3);</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1]</span></code>.</p>
 </div>
 </section>
 <section id="transforming-an-image-in-world-space">
