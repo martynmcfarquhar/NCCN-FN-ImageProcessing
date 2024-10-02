@@ -398,7 +398,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="rigid-body-transformations">
 <h1>Rigid-body Transformations<a class="headerlink" href="#rigid-body-transformations" title="Link to this heading">#</a></h1>
-<p>In the previous section, we introduced the idea of two different coordinates systems we can use when working with images. In order to use both systems, we need to be able to convert between them. So, we need to be able to take voxel coordinates and convert them into millimetres, as well as take millimetre coordinates and convert them into voxels.</p>
+<p>In the previous section, we introduced the idea of two different coordinates systems we called <em>voxel-space</em> and <em>world-space</em>. In order to use both systems, we need to be able to convert between them. As such, we need to be able to take voxel coordinates and convert them into millimetres, as well as take millimetre coordinates and convert them into voxels.</p>
 <p>Very generally, the ability to transform coordinates from one system into another can be expressed as</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -408,7 +408,7 @@ document.write(`
     b_z &amp;= m_{31}a_x + m_{32}a_y + m_{33}a_z + m_{34} 
 \end{align}
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(a_x\)</span>, <span class="math notranslate nohighlight">\(a_y\)</span>, <span class="math notranslate nohighlight">\(a_z\)</span> represent the original coordinates and <span class="math notranslate nohighlight">\(b_x\)</span>, <span class="math notranslate nohighlight">\(b_y\)</span>, <span class="math notranslate nohighlight">\(b_z\)</span> represent the transformed coordinates. You might recognise each new coordinate as a <em>linear combination</em> of the old coordinates and some values called <span class="math notranslate nohighlight">\(m\)</span>. You might also recognise that this is therefore a system of 3 linear equations, which can be represented using matrices. As such, we can compactly represent this transformation in the form <span class="math notranslate nohighlight">\(\mathbf{b} = \mathbf{Ma}\)</span>, which we can expand to</p>
+<p>where <span class="math notranslate nohighlight">\(a_x\)</span>, <span class="math notranslate nohighlight">\(a_y\)</span>, <span class="math notranslate nohighlight">\(a_z\)</span> represent the original coordinates and <span class="math notranslate nohighlight">\(b_x\)</span>, <span class="math notranslate nohighlight">\(b_y\)</span>, <span class="math notranslate nohighlight">\(b_z\)</span> represent the transformed coordinates. You might recognise each new coordinate as a <em>linear combination</em> of the old coordinates and some values called <span class="math notranslate nohighlight">\(m\)</span>. You might also recognise that this is therefore a system of three linear equations, which can be represented using matrices. As such, we can compactly represent this transformation in the form <span class="math notranslate nohighlight">\(\mathbf{b} = \mathbf{Ma}\)</span>, which we can expand to</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -429,19 +429,25 @@ document.write(`
     a_y \\
     a_z \\
     1
-\end{bmatrix}
+\end{bmatrix}.
 \end{split}\]</div>
-<p>where the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> contains the 12 parameters of the transformation (noticing that we have to add an extra row to make the matrix multiplication work). Multiplying a vector containing our original coordinates by <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> will give us the coordinates transformed into the alternative space. We can also use <span class="math notranslate nohighlight">\(\mathbf{M}^{-1}\)</span> to convert from the transformed coordinates back into the original coordinates using <span class="math notranslate nohighlight">\(\mathbf{a} = \mathbf{M}^{-1}\mathbf{b}\)</span>.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> therefore contains the 12 parameters of the transformation (noticing that we have to add an extra row to make the matrix multiplication work). Multiplying a vector containing our original coordinates by <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> will give us the coordinates transformed into the alternative space. We can also use <span class="math notranslate nohighlight">\(\mathbf{M}^{-1}\)</span> to convert from the transformed coordinates back into the original coordinates using <span class="math notranslate nohighlight">\(\mathbf{a} = \mathbf{M}^{-1}\mathbf{b}\)</span>.</p>
 <section id="affine-transformations">
 <h2>Affine Transformations<a class="headerlink" href="#affine-transformations" title="Link to this heading">#</a></h2>
-<p>The parameters in the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> encode what is known as an <em>affine</em> transformation. The word affine means that parallel lines remain parallel after transformation. As such, operations such as bending are not allowed. Transformation can therefore only be constructed by combining:</p>
+<p>The parameters in the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> encode what is known as an <em>affine</em> transformation. The word <a class="reference external" href="https://en.wikipedia.org/wiki/Affine_transformation">affine</a> means that parallel lines remain parallel after transformation. As such, operations such as <em>bending</em> are not allowed. Transformation can therefore only be constructed by combining:</p>
 <ul class="simple">
 <li><p>Translations</p></li>
 <li><p>Rotations</p></li>
 <li><p>Zooming/Scaling</p></li>
 <li><p>Shearing</p></li>
 </ul>
-<p>Examples of each of these operations are shown in {numref}``</p>
+<p>Examples of each of these operations are shown in <a class="reference internal" href="#affine-fig"><span class="std std-numref">Fig. 8</span></a>.</p>
+<figure class="align-default" id="affine-fig">
+<a class="reference internal image-reference" href="_images/affine.png"><img alt="_images/affine.png" src="_images/affine.png" style="width: 700px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Illustration of the operations that are allowed in order to form an affine transformation.</span><a class="headerlink" href="#affine-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p>To really cement the ideas of affine transformations, you can play around with the example below. Move the sliders to change the transformation matrix, which is then used to change the coordinates of every pixel in the image.</p>
 <iframe align="" frameborder="0" height="800" scrolling="no" src="https://www.geogebra.org/material/iframe/id/jyskrsgy/width/800/height/800/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" title="AffineTransform2D" width="800"></iframe>
 </section>
