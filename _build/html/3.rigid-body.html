@@ -510,19 +510,25 @@ q_{x} &amp; 0     &amp; 0     &amp; 0 \\
 <p>Finally, shears are encoded using parameters in the top three off-diagonal elements</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\mathbf{M}_{Z} = 
+\mathbf{M}_{S} = 
 \begin{bmatrix}
-q_{x} &amp; 0     &amp; 0     &amp; 0 \\
-0     &amp; q_{y} &amp; 0     &amp; 0 \\
-0     &amp; 0     &amp; q_{z} &amp; 0 \\
-0     &amp; 0     &amp; 0     &amp; 1
+1 &amp; q_{1} &amp; q_{2} &amp; 0 \\
+0 &amp; 1     &amp; q_{3} &amp; 0 \\
+0 &amp; 0     &amp; 1     &amp; 0 \\
+0 &amp; 0     &amp; 0     &amp; 1
 \end{bmatrix}.
 \end{split}\]</div>
 <p>Note that we are often interested in transformations that move the brain, without changing its general size or shape. These forms of transformation are known as <em>rigid-body</em> and correspond to a subset of affine transformations that <em>do not</em> include shearing. Furthermore, zooms are only allowed to use the same value of <span class="math notranslate nohighlight">\(q\)</span> for each axis, such that the brain can be scaled up and down, but not stretched or squashed.</p>
 </section>
 <section id="converting-voxel-space-to-world-space">
 <h2>Converting Voxel-space to World-space<a class="headerlink" href="#converting-voxel-space-to-world-space" title="Link to this heading">#</a></h2>
-<p>Now that we have seen how affine transformations work, we can get back to the idea of converting between voxel-space and world-space. The key thing to understand is that this conversion is just an affine transformation, consisting of translating, rotating and scaling the axes so they represent millimetres instead of voxels. This process is illustrated in {numref}``.</p>
+<p>Now that we have seen how affine transformations work, we can get back to the idea of converting between voxel-space and world-space. The key thing to understand is that this conversion is just an affine transformation, consisting of translating, rotating and scaling the axes so they represent millimetres instead of voxels. This process is illustrated in <a class="reference internal" href="#v2w-affine-fig"><span class="std std-numref">Fig. 9</span></a>.</p>
+<figure class="align-default" id="v2w-affine-fig">
+<a class="reference internal image-reference" href="_images/voxel-to-world-affine.png"><img alt="_images/voxel-to-world-affine.png" src="_images/voxel-to-world-affine.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Illustration of the affine transformation used to covert between voxel-space and world-space.</span><a class="headerlink" href="#v2w-affine-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 
