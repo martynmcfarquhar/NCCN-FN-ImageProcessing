@@ -448,8 +448,77 @@ document.write(`
 <p><span class="caption-number">Fig. 8 </span><span class="caption-text">Illustration of the operations that are allowed when forming an affine transformation.</span><a class="headerlink" href="#affine-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>To really cement the ideas of affine transformations, you can play around with the example below. Move the sliders to change the transformation matrix, which is then used to change the coordinates of every pixel in the image.</p>
-<iframe align="" frameborder="0" height="800" scrolling="no" src="https://www.geogebra.org/material/iframe/id/jyskrsgy/width/800/height/800/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" title="AffineTransform2D" width="800"></iframe>
+<p>To get a feel for affine transformations, you can play around with the example below. Move the sliders to change the transformation matrix, which is then used to change the coordinates of every pixel in the image.</p>
+<iframe align="" frameborder="0" height="800" scrolling="no" src="https://www.geogebra.org/material/iframe/id/jyskrsgy/width/800/height/800/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" title="AffineTransform2D" width="800"></iframe><p>Building an affine transformation within the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> can be achieved by multiplying separate matrices that encode translations, rotations, zooms and shearing. As such, the final matrix has the form</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{M} = \mathbf{M}_{T} \times \mathbf{M}_{R} \times \mathbf{M}_{Z} \times \mathbf{M}_{S}.
+\]</div>
+<p>Each one of these individual matrices has a specific form. For instance, translating an image by <span class="math notranslate nohighlight">\(q_{x}\)</span> units along the <span class="math notranslate nohighlight">\(x\)</span>-axis, <span class="math notranslate nohighlight">\(q_{y}\)</span> units along the <span class="math notranslate nohighlight">\(y\)</span>-axis and <span class="math notranslate nohighlight">\(q_{z}\)</span> units along the <span class="math notranslate nohighlight">\(z\)</span>-axis would result in</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{M}_{T} = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; q_{x} \\
+0 &amp; 1 &amp; 0 &amp; q_{y} \\
+0 &amp; 0 &amp; 1 &amp; q_{z} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}.
+\end{split}\]</div>
+<p>Similarly, a rotation of <span class="math notranslate nohighlight">\(q\)</span> radians around either the <span class="math notranslate nohighlight">\(x\)</span>-axis (referred to as <em>pitch</em>), the <span class="math notranslate nohighlight">\(y\)</span>-axis (referred to as <em>roll</em>) or the <span class="math notranslate nohighlight">\(z\)</span>-axis (referred to as <em>yaw</em>) would result in</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{M}_{R_{x}} = 
+\begin{bmatrix}
+1 &amp; 0        &amp; 0       &amp; 0 \\
+0 &amp; \cos(q)  &amp; \sin(q) &amp; 0 \\
+0 &amp; -\sin(q) &amp; \cos(q) &amp; 0 \\
+0 &amp; 0        &amp; 0       &amp; 1
+\end{bmatrix},\quad 
+\mathbf{M}_{R_{y}} = 
+\begin{bmatrix}
+\cos(q)  &amp; 0 &amp; \sin(q) &amp; 0 \\
+0        &amp; 1 &amp; 0       &amp; 0 \\
+-\sin(q) &amp; 0 &amp; \cos(q) &amp; 0 \\
+0        &amp; 0 &amp; 0       &amp; 1
+\end{bmatrix},\quad 
+\mathbf{M}_{R_{z}} = 
+\begin{bmatrix}
+\cos(q)  &amp; \sin(q) &amp; 0 &amp; 0 \\
+-\sin(q) &amp; \cos(q) &amp; 0 &amp; 0 \\
+0        &amp; 0       &amp; 1 &amp; 0 \\
+0        &amp; 0       &amp; 0 &amp; 1
+\end{bmatrix},
+\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{M}_{R} = \mathbf{M}_{R_{x}} \times \mathbf{M}_{R_{y}} \times \mathbf{M}_{R_{z}}.
+\]</div>
+<p>You do not need to worry about all the trigonometry here. The main point is about the <em>structure</em>, in that rotations are encoded in both the diagonal and off-diagonal rows corresponding to the axes we are <em>not</em> rotating around.</p>
+<p>Zooms by a factor of <span class="math notranslate nohighlight">\(q_{x}\)</span>, <span class="math notranslate nohighlight">\(q_y\)</span> and <span class="math notranslate nohighlight">\(q_z\)</span> are encoded in the diagonal elements, where a negative zoom will <em>flip</em> the axis. This operation is also referred to as <em>scaling</em> and is encoded using</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{M}_{Z} = 
+\begin{bmatrix}
+q_{x} &amp; 0     &amp; 0     &amp; 0 \\
+0     &amp; q_{y} &amp; 0     &amp; 0 \\
+0     &amp; 0     &amp; q_{z} &amp; 0 \\
+0     &amp; 0     &amp; 0     &amp; 1
+\end{bmatrix}.
+\end{split}\]</div>
+<p>Finally, shears are encoded using parameters in the top three off-diagonal elements</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{M}_{Z} = 
+\begin{bmatrix}
+q_{x} &amp; 0     &amp; 0     &amp; 0 \\
+0     &amp; q_{y} &amp; 0     &amp; 0 \\
+0     &amp; 0     &amp; q_{z} &amp; 0 \\
+0     &amp; 0     &amp; 0     &amp; 1
+\end{bmatrix}.
+\end{split}\]</div>
+<p>Note that we are often interested in transformations that move the brain, without changing its general size or shape. These forms of transformation are known as <em>rigid-body</em> and correspond to a subset of affine transformations that <em>do not</em> include shearing. Furthermore, zooms are only allowed to use the same value of <span class="math notranslate nohighlight">\(q\)</span> for each axis, such that the brain can be scaled up and down, but not stretched or squashed.</p>
 </section>
 <section id="converting-voxel-space-to-world-space">
 <h2>Converting Voxel-space to World-space<a class="headerlink" href="#converting-voxel-space-to-world-space" title="Link to this heading">#</a></h2>
