@@ -594,9 +594,15 @@ q_{x} &amp; 0     &amp; 0     &amp; 0 \\
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MRx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span>  <span class="mi">0</span>         <span class="mi">0</span>         <span class="mi">0</span><span class="p">;</span> <span class="o">...</span>
        <span class="mi">0</span>  <span class="n">cos</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="n">sin</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="mi">0</span><span class="p">;</span> <span class="o">...</span>
        <span class="mi">0</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="n">cos</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="mi">0</span><span class="p">;</span> <span class="o">...</span>
-       <span class="mi">0</span>  <span class="mi">0</span>         <span class="mi">0</span>         <span class="mi">1</span><span class="p">];</span> 
+       <span class="mi">0</span>  <span class="mi">0</span>         <span class="mi">0</span>         <span class="mi">1</span><span class="p">];</span>
 </pre></div>
 </div>
+<p>Continue like this for the remaining matrices and then try calculating</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MR</span> <span class="o">=</span> <span class="n">MRx</span> <span class="o">*</span> <span class="n">MRy</span> <span class="o">*</span> <span class="n">MRz</span><span class="p">;</span>
+<span class="n">MT</span> <span class="o">*</span> <span class="n">MR</span> <span class="o">*</span> <span class="n">MZ</span> <span class="o">*</span> <span class="n">MS</span>
+</pre></div>
+</div>
+<p>to see if the result is the same as <code class="docutils literal notranslate"><span class="pre">hdr.mat</span></code>.</p>
 </div>
 </section>
 <section id="transforming-an-image-in-world-space">
