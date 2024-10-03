@@ -456,7 +456,10 @@ document.write(`
 \[
 \mathbf{M} = \mathbf{M}_{T} \times \mathbf{M}_{R} \times \mathbf{M}_{Z} \times \mathbf{M}_{S}.
 \]</div>
-<p>Each one of these individual matrices has a specific form. For instance, translating an image by <span class="math notranslate nohighlight">\(q_{x}\)</span> units along the <span class="math notranslate nohighlight">\(x\)</span>-axis, <span class="math notranslate nohighlight">\(q_{y}\)</span> units along the <span class="math notranslate nohighlight">\(y\)</span>-axis and <span class="math notranslate nohighlight">\(q_{z}\)</span> units along the <span class="math notranslate nohighlight">\(z\)</span>-axis would result in</p>
+<p>Each one of these individual matrices has a specific form, which can read about in the advanced drop-down below.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Advanced: The Structure of the <strong>M</strong> Matrix</p>
+<p>For instance, translating an image by <span class="math notranslate nohighlight">\(q_{x}\)</span> units along the <span class="math notranslate nohighlight">\(x\)</span>-axis, <span class="math notranslate nohighlight">\(q_{y}\)</span> units along the <span class="math notranslate nohighlight">\(y\)</span>-axis and <span class="math notranslate nohighlight">\(q_{z}\)</span> units along the <span class="math notranslate nohighlight">\(z\)</span>-axis would result in</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \mathbf{M}_{T} = 
@@ -520,6 +523,7 @@ q_{x} &amp; 0     &amp; 0     &amp; 0 \\
 0 &amp; 0     &amp; 0     &amp; 1
 \end{bmatrix}.
 \end{split}\]</div>
+</div>
 <p>Note that we are often interested in transformations that move the brain, without changing its general size or shape. These forms of transformation are known as <em>rigid-body</em> and correspond to a subset of affine transformations that <em>do not</em> include shearing. Furthermore, zooms are only allowed to use the same value of <span class="math notranslate nohighlight">\(q\)</span> for each axis, such that the brain can be scaled up and down, but not stretched or squashed.</p>
 </section>
 <section id="converting-between-voxel-space-and-world-space">
