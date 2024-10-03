@@ -456,7 +456,7 @@ document.write(`
 \[
 \mathbf{M} = \mathbf{M}_{T} \times \mathbf{M}_{R} \times \mathbf{M}_{Z} \times \mathbf{M}_{S}.
 \]</div>
-<p>Each one of these individual matrices has a specific form, which can read about in the advanced drop-down below.</p>
+<p>Each one of these individual matrices has a specific form, which can read about in the drop-down below.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Advanced: The Structure of the <strong>M</strong> Matrix</p>
 <p>In terms of understanding how the <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix is formed, we can explore the structure of the individual matrices <span class="math notranslate nohighlight">\(\mathbf{M}_{T}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{M}_{R}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{M}_{Z}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{M}_{S}\)</span>.</p>
@@ -471,7 +471,7 @@ document.write(`
 0 &amp; 0 &amp; 0 &amp; 1
 \end{bmatrix}.
 \end{split}\]</div>
-<p>Similarly, a rotation of <span class="math notranslate nohighlight">\(q\)</span> radians around either the <span class="math notranslate nohighlight">\(x\)</span>-axis (referred to as <em>pitch</em>), the <span class="math notranslate nohighlight">\(y\)</span>-axis (referred to as <em>roll</em>) or the <span class="math notranslate nohighlight">\(z\)</span>-axis (referred to as <em>yaw</em>) would result in</p>
+<p>Similarly, a rotation of <span class="math notranslate nohighlight">\(q\)</span> radians around either the <span class="math notranslate nohighlight">\(x\)</span>-axis (<em>pitch</em>), the <span class="math notranslate nohighlight">\(y\)</span>-axis (<em>roll</em>) or the <span class="math notranslate nohighlight">\(z\)</span>-axis (<em>yaw</em>) would result in</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \mathbf{M}_{R_{x}} = 
@@ -562,13 +562,6 @@ q_{x} &amp; 0     &amp; 0     &amp; 0 \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><html><body><pre>ans = 4x1 double
-  -71.3129
-   18.2397
- -159.4359
-    1.0000
-</pre></body></html></div></div>
 </div>
 <p>Finally, can use the inverse of <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> to get from millimetres back to voxels</p>
 <div class="cell docutils container">
@@ -578,13 +571,6 @@ q_{x} &amp; 0     &amp; 0     &amp; 0 \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><html><body><pre>ans = 4x1 double
-   20.0000
-   25.0000
-   30.0000
-    1.0000
-</pre></body></html></div></div>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Advanced: Breaking Down an <strong>M</strong> Matrix</p>
