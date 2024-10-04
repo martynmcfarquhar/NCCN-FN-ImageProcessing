@@ -8,6 +8,6 @@ chapters:
 - file: 2.voxel-world-space
 - file: 3.rigid-body
 - file: 4.transforming-images
-- file: 4.interpolation
-- file: 5.filtering
-- file: 6.summary
+- file: 5.interpolation
+- file: 6.filtering
+- file: 7.summary
