@@ -398,11 +398,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="transforming-images">
 <h1>Transforming Images<a class="headerlink" href="#transforming-images" title="Permalink to this heading">#</a></h1>
-<p>In the previous section, we discussed the principles of affine and rigid-body transformations and saw how converting between voxel-space and world-space can be conceptualised as an affine transformation of the image coordinates. However, the utility of these forms of transforms is not just moving between different spaces, but also in providing a framework for transforming the location of the brain within an image.</p>
-<p>Generally speaking, because we have a choice of two coordinate spaces, we also have a choice of performing a transformation in <em>world-space</em> or in <em>voxel-space</em>. As we will see, world-space transformations alter the rules for mapping voxels to millimetres without changing the voxel values, whereas voxel-space transformations directly alter the voxels in the image. In this section, we will explore the utility of each type of transformation.</p>
+<p>In the previous section, we discussed the principles of affine and rigid-body transformations and saw how converting between voxel-space and world-space can be conceptualised as an affine transformation of the image coordinates. However, the utility of these forms of transforms is not just moving between different spaces, but also in providing a framework for transforming the location of the brain within an image. Generally speaking, because we have a choice of two coordinate spaces, we also have a choice of performing a transformation in <em>world-space</em> or in <em>voxel-space</em>. As we will see, world-space transformations alter the rules for mapping voxels to millimetres, without changing the voxel values. In comparison, voxel-space transformations directly alter the voxels in the image. In this section, we will explore the principles and utility of each type of transformation.</p>
 <section id="transforming-an-image-in-world-space">
 <h2>Transforming an Image in World-space<a class="headerlink" href="#transforming-an-image-in-world-space" title="Permalink to this heading">#</a></h2>
-<p>One of the main uses of a world-space representation is to create transformations for moving the brain within an image. Generally speaking, transformations in world-space make more sense because we can use real-world units. For instance, we can move the brain back by 3mm and up by 5mm. To do this, we have to combine the <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix from the header with another affine transform matrix <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>. If we use the following as our example <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix</p>
+<p>One of the main motivating factors behind a world-space representation of an image is so that we can create more intuitive transformations for moving the brain. Generally speaking, transformations in world-space make more sense because we can use real-world units. For instance, we can move the brain back by 3mm and up by 5mm. To do this, we have to combine the <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix from the header with another affine transform matrix <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>. If we use the following as our example <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \mathbf{M} = 
@@ -451,7 +450,27 @@ document.write(`
 </section>
 <section id="transforming-an-image-in-voxel-space">
 <h2>Transforming an Image in Voxel-space<a class="headerlink" href="#transforming-an-image-in-voxel-space" title="Permalink to this heading">#</a></h2>
-</section>
+<p>As highlighted above, transforming and replacing the header matrix will not alter the voxel data. If we wanted this transformation to change the actual image data, we would need to turn this into a <em>voxel-space</em> transformation. The motivation for this is usually in the context of image registration and so will become clearer next week. The short version is that we usually map between different images in world-space, but once we have transformed the actual image data we do not need to perform this mapping anymore and can work exclusively in voxel-space. Computationally, this is much more efficient because we do not need to keep converting coordinates between different images. You can therefore think of the voxel-space transforming as <em>applying</em> the world-space transformation to the actual data.</p>
+<p>Converting a world-space transformation into a voxel-space transformation can be achieved by defining the following mapping matrix</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Q} = (\mathbf{TM})^{-1}\mathbf{M}.
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> can then be used to change any voxel coordinates in the original image into new voxel coordinates in the transformed image. For instance, using the <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> defined earlier</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Qa} = 
+\begin{bmatrix}
+20
+23
+20
+1
+\end{bmatrix}.
+\]</div>
+<p>So, the original voxel coordinate of <span class="math notranslate nohighlight">\(y = 20\)</span> has been transformed into a new voxel coordinate of <span class="math notranslate nohighlight">\(y = 23\)</span>. This works by taking the original voxel coordinate, transforming them into millimetres, applying the transformation in world-space and then transforming the shifted world-space coordinates back into voxels.</p>
+<p>In order to use <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> to actually change the voxel data, we would first create a blank image with the same dimensions as the original image. We would then work through each voxel in the new image and transform the corresponding voxel coordinates using <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>. These transformed coordinates tell us the coordinates of the voxel we should copy from the original image. In the example above, when we get to voxel <span class="math notranslate nohighlight">\([20, 20, 20]\)</span> in the new image we would use <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> to transform these coordinates into <span class="math notranslate nohighlight">\([20, 23, 20]\)</span>. This would tell us that we need to copy the value of voxel <span class="math notranslate nohighlight">\([20, 23, 20]\)</span> from the old image into voxel <span class="math notranslate nohighlight">\([20, 20, 20]\)</span> in the new image. This is conceptualised as a <em>pulling</em> operation, where the original data are pulled into their new locations.</p>
+<p>This process is illustrated in the video below for a rotation operation. For each position in the new image on the left, we take the coordinates and transform them using <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>. This gives the coordinates illustrated in the image on the right. The voxel value associated with this coordinate is copied from the old image into the new image. If the transformation results in coordinates that are out-of-bounds, a value of -1 is inserted into the new image instead.</p>
+<div style="max-width: 1280px"><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"><iframe src="https://livemanchesterac.sharepoint.com/sites/UOM-FBMH-MSc-NCCN/_layouts/15/embed.aspx?UniqueId=f519fafa-9b1e-4d90-8cca-9c2b5d731ce2&embed=%7B%22hvm%22%3Atrue%2C%22ust%22%3Atrue%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="1280" height="720" frameborder="0" scrolling="no" allowfullscreen title="Rotate-Image.mp4" style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div></section>
 </section>
 
     <script type="text/x-thebe-config">
