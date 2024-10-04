@@ -61,7 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '4.transforming-images';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Interpolation" href="4.interpolation.html" />
+    <link rel="next" title="Interpolation" href="5.interpolation.html" />
     <link rel="prev" title="Rigid-body Transformations" href="3.rigid-body.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -185,9 +185,9 @@
 <li class="toctree-l1"><a class="reference internal" href="2.voxel-world-space.html">Voxel-space and World-space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3.rigid-body.html">Rigid-body Transformations</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Transforming Images</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4.interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.filtering.html">Image Filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6.summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6.filtering.html">Image Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7.summary.html">Summary</a></li>
 </ul>
 
     </div>
@@ -398,7 +398,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="transforming-images">
 <h1>Transforming Images<a class="headerlink" href="#transforming-images" title="Permalink to this heading">#</a></h1>
-<p>In the previous section, we discussed the principles of affine and rigid-body transformations and saw how converting between voxel-space and world-space can be conceptualised as an affine transformation of the image coordinates. However, the utility of these forms of transforms is not just moving between different spaces, but also in providing a framework for transforming the location of the brain within an image. Generally, we have two choices when transforming an image. We either transform the image in <em>world-space</em>, or we transform the image in <em>voxel-space</em>.</p>
+<p>In the previous section, we discussed the principles of affine and rigid-body transformations and saw how converting between voxel-space and world-space can be conceptualised as an affine transformation of the image coordinates. However, the utility of these forms of transforms is not just moving between different spaces, but also in providing a framework for transforming the location of the brain within an image.</p>
+<p>Generally speaking, because we have a choice of two coordinate spaces, we also have a choice of performing a transformation in <em>world-space</em> or in <em>voxel-space</em>. As we will see, world-space transformations alter the rules for mapping voxels to millimetres without changing the voxel values, whereas voxel-space transformations directly alter the voxels in the image. In this section, we will explore the utility of each type of transformation.</p>
 <section id="transforming-an-image-in-world-space">
 <h2>Transforming an Image in World-space<a class="headerlink" href="#transforming-an-image-in-world-space" title="Permalink to this heading">#</a></h2>
 <p>One of the main uses of a world-space representation is to create transformations for moving the brain within an image. Generally speaking, transformations in world-space make more sense because we can use real-world units. For instance, we can move the brain back by 3mm and up by 5mm. To do this, we have to combine the <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix from the header with another affine transform matrix <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>. If we use the following as our example <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix</p>
@@ -493,7 +494,7 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="4.interpolation.html"
+       href="5.interpolation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
