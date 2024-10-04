@@ -458,15 +458,15 @@ document.write(`
 \]</div>
 <p><span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> can then be used to change any voxel coordinates in the original image into new voxel coordinates in the transformed image. For instance, using the <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> defined earlier</p>
 <div class="math notranslate nohighlight">
-\[
+\[\begin{split}
 \mathbf{Qa} = 
 \begin{bmatrix}
-20
-23
-20
+20 \\
+23 \\
+20 \\
 1
 \end{bmatrix}.
-\]</div>
+\end{split}\]</div>
 <p>So, the original voxel coordinate of <span class="math notranslate nohighlight">\(y = 20\)</span> has been transformed into a new voxel coordinate of <span class="math notranslate nohighlight">\(y = 23\)</span>. This works by taking the original voxel coordinate, transforming them into millimetres, applying the transformation in world-space and then transforming the shifted world-space coordinates back into voxels.</p>
 <p>In order to use <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> to actually change the voxel data, we would first create a blank image with the same dimensions as the original image. We would then work through each voxel in the new image and transform the corresponding voxel coordinates using <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>. These transformed coordinates tell us the coordinates of the voxel we should copy from the original image. In the example above, when we get to voxel <span class="math notranslate nohighlight">\([20, 20, 20]\)</span> in the new image we would use <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> to transform these coordinates into <span class="math notranslate nohighlight">\([20, 23, 20]\)</span>. This would tell us that we need to copy the value of voxel <span class="math notranslate nohighlight">\([20, 23, 20]\)</span> from the old image into voxel <span class="math notranslate nohighlight">\([20, 20, 20]\)</span> in the new image. This is conceptualised as a <em>pulling</em> operation, where the original data are pulled into their new locations.</p>
 <p>This process is illustrated in the video below for a rotation operation. For each position in the new image on the left, we take the coordinates and transform them using <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>. This gives the coordinates illustrated in the image on the right. The voxel value associated with this coordinate is copied from the old image into the new image. If the transformation results in coordinates that are out-of-bounds, a value of -1 is inserted into the new image instead.</p>
