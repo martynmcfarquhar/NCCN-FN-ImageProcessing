@@ -61,7 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '3.rigid-body';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Interpolation" href="4.interpolation.html" />
+    <link rel="next" title="Transforming Images" href="4.transforming-images.html" />
     <link rel="prev" title="Voxel-space and World-space" href="2.voxel-world-space.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,6 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="1.what-is.html">What is Image Processing?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2.voxel-world-space.html">Voxel-space and World-space</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Rigid-body Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.transforming-images.html">Transforming Images</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4.interpolation.html">Interpolation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5.filtering.html">Image Filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6.summary.html">Summary</a></li>
@@ -384,8 +385,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-transformations">Affine Transformations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-between-voxel-space-and-world-space">Converting Between Voxel-space and World-space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-an-image-in-world-space">Transforming an Image in World-space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-an-image-in-voxel-space">Transforming an Image in Voxel-space</a></li>
 </ul>
             </nav>
         </div>
@@ -609,58 +608,6 @@ q_{x} &amp; 0     &amp; 0     &amp; 0 \\
 <p>and see if the result is the same as <code class="docutils literal notranslate"><span class="pre">hdr.mat</span></code>.</p>
 </div>
 </section>
-<section id="transforming-an-image-in-world-space">
-<h2>Transforming an Image in World-space<a class="headerlink" href="#transforming-an-image-in-world-space" title="Permalink to this heading">#</a></h2>
-<p>One of the main uses of a world-space representation is to create transformations for moving the brain within an image. Generally speaking, transformations in world-space make more sense because we can use real-world units. For instance, we can move the brain back by 3mm and up by 5mm. To do this, we have to combine the <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix from the header with another affine transform matrix <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>. If we use the following as our example <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\mathbf{M} = 
-\begin{bmatrix}
--3 &amp; 0 &amp; 0 &amp;  81  \\ 
- 0 &amp; 3 &amp; 0 &amp; -115 \\ 
- 0 &amp; 0 &amp; 3 &amp; -73  \\
- 0 &amp; 0 &amp; 0 &amp;  1
-\end{bmatrix}
-\end{split}\]</div>
-<p>we can see the original millimetre location of the voxel coordinates <span class="math notranslate nohighlight">\(\mathbf{a} = [20, 20, 20, 1]'\)</span> is given by</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\mathbf{Ma} = 
-\begin{bmatrix} 
- 21 \\
--55 \\ 
--13 \\
-1 
-\end{bmatrix}
-\end{split}\]</div>
-<p>Focusing on the <span class="math notranslate nohighlight">\(y\)</span>-axis, the voxel index of 20 is mapped to -55mm from the origin in world-space. If we wanted to move the image 9mm <em>backwards</em>, we could combine <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> with a transformation matrix <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> that encodes a negative 9mm shift along the <span class="math notranslate nohighlight">\(y\)</span>-axis</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\mathbf{T} = 
-\begin{bmatrix}
- 1 &amp; 0 &amp; 0 &amp;  0 \\ 
- 0 &amp; 1 &amp; 0 &amp; -9 \\ 
- 0 &amp; 0 &amp; 1 &amp;  0 \\
- 0 &amp; 0 &amp; 0 &amp;  1
-\end{bmatrix}
-\end{split}\]</div>
-<p>Pre-multiplying <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> by <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> creates a new matrix that changes how the voxel coordinates are mapped into world-space. So, if we do the following</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\left(\mathbf{TM}\right)\mathbf{a} = 
-\begin{bmatrix} 
- 21 \\
--64 \\ 
--13 \\
-1 
-\end{bmatrix}
-\end{split}\]</div>
-<p>we can see that the voxel coordinate of <span class="math notranslate nohighlight">\(y = 20\)</span> is now mapped to -64mm from the origin, shifting it 9mm further <em>backwards</em>. If we want to make this shift permanent, we can create a new matrix <span class="math notranslate nohighlight">\(\mathbf{M}^{\ast} = \mathbf{TM}\)</span> and then replace the original <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix in the header with <span class="math notranslate nohighlight">\(\mathbf{M}^{\ast}\)</span>. The image is then forever mapped 9mm further backwards in world-space.</p>
-<p>An important point about this process is that it has <em>not</em> altered the voxel data. All we did is change how the voxels coordinates are mapped to millimetre coordinates. In effect, we have changed the rules, but have not done anything to the actual image. Because of this, the image will look no different in voxel-space, but will be moved back 9mm in world-space. This change is somewhat invisible because it will not look like the image has been altered. You would only notice a difference if you saw the image displayed in world-space <em>and</em> had some reference point to compare it with. Typically this reference point is another image, as the point of world-space transforms is often to bring multiple images into alignment without changing the voxel data. This will make more sense next week when we discuss image registration. For now, just try to grasp the idea of world-space transformations, knowing that this will be further contextualised later.</p>
-</section>
-<section id="transforming-an-image-in-voxel-space">
-<h2>Transforming an Image in Voxel-space<a class="headerlink" href="#transforming-an-image-in-voxel-space" title="Permalink to this heading">#</a></h2>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -703,11 +650,11 @@ q_{x} &amp; 0     &amp; 0     &amp; 0 \\
       </div>
     </a>
     <a class="right-next"
-       href="4.interpolation.html"
+       href="4.transforming-images.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Interpolation</p>
+        <p class="prev-next-title">Transforming Images</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -729,8 +676,6 @@ q_{x} &amp; 0     &amp; 0     &amp; 0 \\
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-transformations">Affine Transformations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-between-voxel-space-and-world-space">Converting Between Voxel-space and World-space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-an-image-in-world-space">Transforming an Image in World-space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-an-image-in-voxel-space">Transforming an Image in Voxel-space</a></li>
 </ul>
   </nav></div>
 
