@@ -536,6 +536,21 @@ q_{x} &amp; 0     &amp; 0     &amp; 0 \\
 </figure>
 <p>Given this, all we need to convert voxels into millimetres is a suitable <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix. We can then multiply voxel coordinates by <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> and get the corresponding millimetre coordinates, as well as multiply millimetre coordinates by <span class="math notranslate nohighlight">\(\mathbf{M}^{-1}\)</span> and get the corresponding voxel coordinates.</p>
 <p>So where do we get <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> from? The answer is that most medical imaging file formats store all the necessary information from the scanner to create <span class="math notranslate nohighlight">\(\mathbf{M}\)</span>. This information is stored in the <em>metadata</em> of the file, which is simply all the information carried within the file in addition to the voxel values. On this course, we will be mostly using the <code class="docutils literal notranslate"><span class="pre">NIfTI</span></code> format for brain images, which contains a voxel-to-world mapping matrix within its <em>header</em> information. Practically, this means that any <code class="docutils literal notranslate"><span class="pre">NIfTI</span></code>-formatted image carries with it the <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> matrix needed to convert voxel coordinates into millimetre coordinates.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Remember that that data in voxel-space can be in any orientation because it depends upon how the data have been saved in the file. In all our examples we will assume, for simplicity, that the voxel-space data is correctly oriented. However, in cases where it is not, the affine matrix in the header will have some of the rows <em>swapped</em>. For example</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{M} = 
+\begin{bmatrix}
+ 0 &amp; 3 &amp; 0 &amp;  -20 \\
+-3 &amp; 0 &amp; 0 &amp;  110 \\
+ 0 &amp; 0 &amp; 3 &amp; -190 \\
+ 0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}.
+\end{split}\]</div>
+<p>This means that the voxel coordinates will be <em>rearranged</em> as part of the conversion to world-space. This means that the world-space coordinates will always be in the correct order, even if the voxel-space coordinates are not.</p>
+</div>
 <p>As an example, consider the <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> code below. First, we can extract <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> from the header</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
