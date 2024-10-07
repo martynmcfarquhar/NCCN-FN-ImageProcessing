@@ -432,7 +432,7 @@ document.write(`
 <figure class="align-default" id="fwhm-fig">
 <a class="reference internal image-reference" href="_images/kernel-sd-fwhm.png"><img alt="_images/kernel-sd-fwhm.png" src="_images/kernel-sd-fwhm.png" style="width: 600px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Illustration of how the FWHM is defined in terms of a Gaussian distribution.</span><a class="headerlink" href="#fwhm-fig" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Illustration of how the FWHM is defined in terms of a Gaussian distribution and how it relates to the standard deviation.</span><a class="headerlink" href="#fwhm-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>In terms of how this kernel would be used to smooth an image, <a class="reference internal" href="#smoothing-kernel-fig"><span class="std std-numref">Fig. 17</span></a> tries to visualise the process. We can see that the kernel is placed over a patch of voxels and then the overlapping values are multiplied and summed to produce a value of 123.77. This process is more formally known as <em>convolution</em> and will be explored a little more below. The number 123.77 becomes the new value of the voxel the kernel is <em>centred on</em>, as indicated by the arrow. Continuing through the image in this manner produces the smoothed version of the image you can see on the right.</p>
