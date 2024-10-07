@@ -385,6 +385,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbour-interpolation">Nearest-neighbour Interpolation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-interpolation">Linear Interpolation</a></li>
 </ul>
             </nav>
         </div>
@@ -434,6 +435,22 @@ document.write(`
 <p><span class="caption-number">Fig. 10 </span><span class="caption-text">Illustration of nearest-neighbour interpolation applied in 1D (<em>left</em>) and to an image (<em>right</em>).</span><a class="headerlink" href="#interp-nn-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
+<section id="linear-interpolation">
+<h2>Linear Interpolation<a class="headerlink" href="#linear-interpolation" title="Link to this heading">#</a></h2>
+<p>A more sophisticated method for finding a value for voxel <span class="math notranslate nohighlight">\([20, 22.667, 20]\)</span> is to consider how far this voxel is from its neighbours and use that information to determine a value. In this example, 22.667 is 66.7% of the way between 22 and 23. So, what we could do is plot a straight line between the value of voxel <span class="math notranslate nohighlight">\([20, 22, 20]\)</span> and voxel <span class="math notranslate nohighlight">\([20, 23, 20]\)</span> and then see what new value sits 66.7% of the way along this line. This is the essence of linear interpolation.</p>
+<p>When working in one dimension, the interpolated value is given by</p>
+<div class="math notranslate nohighlight">
+\[
+v_{\text{LIN}} = \frac{(c_b - c_c)v_a + (c_c - c_a)v_b}{c_b - c_a},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_c\)</span> is the fractional coordinate, <span class="math notranslate nohighlight">\(c_a\)</span> is the coordinate <em>below</em> <span class="math notranslate nohighlight">\(c_c\)</span>, <span class="math notranslate nohighlight">\(c_b\)</span> is the coordinate <em>above</em> <span class="math notranslate nohighlight">\(c_c\)</span>, <span class="math notranslate nohighlight">\(v_a\)</span> is the voxel value at <span class="math notranslate nohighlight">\(c_a\)</span> and <span class="math notranslate nohighlight">\(v_b\)</span> is the voxel value at <span class="math notranslate nohighlight">\(c_b\)</span>. To see this in action, consider our example of a coordinate of 22.667 and say that the value at voxel 22 was 5 and the value at voxel 23 was 7. The interpolated value would be</p>
+<div class="math notranslate nohighlight">
+\[
+v_{\text{LIN}} = \frac{(23 - 22.667)5 + (22.667 - 22)7}{23 - 22} = 6.334,
+\]</div>
+<p>which makes sense because the difference between 5 and 7 is 2 and 66.7% of 2 is 1.334. So 66.7% of the way between 5 and 7 is <span class="math notranslate nohighlight">\(5 + 1.334 = 6.334\)</span>.</p>
+<p>When applied in 2D, this is often termed bilinear interpolation and involves performing several of the linear interpolations described above. For example, in the situation illustrated below we have 4 points labeled A-D and an in-between point labeled G. To find a value for G, we first use linear interpolation between A and B to find the point E and then use linear interpolation between C and D to find the point F. We then interpolate between E and F to find our final value of G.</p>
 </section>
 </section>
 
@@ -502,6 +519,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbour-interpolation">Nearest-neighbour Interpolation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-interpolation">Linear Interpolation</a></li>
 </ul>
   </nav></div>
 
