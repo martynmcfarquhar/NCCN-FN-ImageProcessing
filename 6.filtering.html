@@ -423,7 +423,7 @@ document.write(`
 <p><span class="caption-number">Fig. 15 </span><span class="caption-text">Illustration of a <span class="math notranslate nohighlight">\(17 \times 17\)</span> Gaussian kernel.</span><a class="headerlink" href="#gauss-kern-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Note that the <em>width</em> of a normal distribution is usually controlled by its <em>standard deviation</em> (represented by <span class="math notranslate nohighlight">\(\sigma\)</span>). In neuroimaging, however, it is more typical to talk about the <em>Full Width at Half Maximum</em> (FWHM) value in the context of a smoothing kernel. This value gives the number of voxels the kernel covers at half its height, as illustrated in {numref}``. Parameterising the kernel in this fashion means we can think about the coverage of the kernel more intuitively in terms of voxels. The standard deviation and FWHM are connected, as shown by the formula</p>
+<p>Note that the <em>width</em> of a normal distribution is usually controlled by its <em>standard deviation</em> (represented by <span class="math notranslate nohighlight">\(\sigma\)</span>). In neuroimaging, however, it is more typical to talk about the <em>Full Width at Half Maximum</em> (FWHM) value in the context of a smoothing kernel. This value gives the number of voxels the kernel covers at half its height, as illustrated in <a class="reference internal" href="#fwhm-fig"><span class="std std-numref">Fig. 16</span></a>. Parameterising the kernel in this fashion means we can think about the coverage of the kernel more intuitively in terms of voxels. The standard deviation and FWHM are connected, as shown by the formula</p>
 <div class="math notranslate nohighlight">
 \[
 \text{FWHM} = 2\sqrt{2\ln{2}}\sigma \approx 2.355 \sigma.
@@ -433,6 +433,13 @@ document.write(`
 <a class="reference internal image-reference" href="_images/FWHM.png"><img alt="_images/FWHM.png" src="_images/FWHM.png" style="width: 500px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 16 </span><span class="caption-text">Illustration of how the FWHM is defined in terms of a Gaussian distribution.</span><a class="headerlink" href="#fwhm-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In terms of how this kernel would be used to smooth an image, <a class="reference internal" href="#smoothing-kernel-fig"><span class="std std-numref">Fig. 17</span></a> tries to visualise the process. We can see that the kernel is placed over a patch of voxels and then the overlapping values are multiplied and summed to produce a value of 123.77. This process is more formally known as <em>convolution</em> and will be explored a little more below. The number 123.77 becomes the new value of the voxel the kernel is <em>centred on</em>, as indicated by the arrow. Continuing through the image in this manner produces the smoothed version of the image you can see on the right.</p>
+<figure class="align-default" id="smoothing-kernel-fig">
+<a class="reference internal image-reference" href="_images/smoothing-kernel.png"><img alt="_images/smoothing-kernel.png" src="_images/smoothing-kernel.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Illustration of how smoothing is achieved via the process of convolving a Gaussian kernel with an image.</span><a class="headerlink" href="#smoothing-kernel-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
