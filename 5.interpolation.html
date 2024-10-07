@@ -387,6 +387,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbour-interpolation">Nearest-neighbour Interpolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-interpolation">Linear Interpolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-spline-interpolation">B-spline Interpolation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolation-issues">Interpolation issues</a></li>
 </ul>
             </nav>
         </div>
@@ -478,6 +479,17 @@ v_{\text{LIN}} = \frac{(23 - 22.667)5 + (22.667 - 22)7}{23 - 22} = 6.334,
 </figcaption>
 </figure>
 </section>
+<section id="interpolation-issues">
+<h2>Interpolation issues<a class="headerlink" href="#interpolation-issues" title="Link to this heading">#</a></h2>
+<p>Interpolation, though necessary, is a procedure that we have to treat with <em>caution</em>. One of the bigger issues we can face is interpolating the same dataset too many times. Notice in the examples of interpolation above that the image gets blurrier after resampling. If we were to resample the image again and again this blurring would get progressively worse. This indicates a loss of information after each interpolation step. In effect, we are <em>degrading</em> the data. This is particularly problematic when working with images from modalities such as PET or fMRI, where the resolution is already low. As such, we have to take care to only resample our data as many times as absolutely necessary.</p>
+<p>An illustration of this issue can be seen in <a class="reference internal" href="#trans-concat-fig"><span class="std std-numref">Fig. 14</span></a>. Here we can see how successive interpolation results in a loss of data and blurring of the image. The alternative is therefore to concatenate multiple transformations and then only resample the data <em>once</em>. In <a class="reference internal" href="#trans-concat-fig"><span class="std std-numref">Fig. 14</span></a>, concatenation reveals that that no changes are need and so no image degredation is necessary.</p>
+<figure class="align-default" id="trans-concat-fig">
+<a class="reference internal image-reference" href="_images/trans-concat.png"><img alt="_images/trans-concat.png" src="_images/trans-concat.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Illustration of how applying multiple transformations can degrade a dataset. Instead, we can concatenate mutiple transformations together before applying them. In this example, the transformations cancel and thus no interpolation was actually necessary.</span><a class="headerlink" href="#trans-concat-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -547,6 +559,7 @@ v_{\text{LIN}} = \frac{(23 - 22.667)5 + (22.667 - 22)7}{23 - 22} = 6.334,
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbour-interpolation">Nearest-neighbour Interpolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-interpolation">Linear Interpolation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-spline-interpolation">B-spline Interpolation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolation-issues">Interpolation issues</a></li>
 </ul>
   </nav></div>
 
