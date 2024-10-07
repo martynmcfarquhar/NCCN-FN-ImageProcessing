@@ -453,7 +453,7 @@ v_{\text{LIN}} = \frac{(23 - 22.667)5 + (22.667 - 22)7}{23 - 22} = 6.334,
 <p>which makes sense because the difference between 5 and 7 is 2 and 66.7% of 2 is 1.334. So 66.7% of the way between 5 and 7 is <span class="math notranslate nohighlight">\(5 + 1.334 = 6.334\)</span>.</p>
 <p>When applied in 2D, this is often termed bilinear interpolation and involves performing several of the linear interpolations described above. For example, in the situation illustrated in <a class="reference internal" href="#lerp-fig"><span class="std std-numref">Fig. 11</span></a> we have 4 points labeled A-D and an in-between point labeled G. To find a value for G, we first use linear interpolation between A and B to find the point E and then use linear interpolation between C and D to find the point F. We then interpolate between E and F to find our final value of G.</p>
 <figure class="align-default" id="lerp-fig">
-<a class="reference internal image-reference" href="_images/lerp.png"><img alt="_images/lerp.png" src="_images/lerp.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/lerp.png"><img alt="_images/lerp.png" src="_images/lerp.png" style="width: 400px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 11 </span><span class="caption-text">Illustration of linear interpolation in 2D (often called <em>bilinear</em> interpolation).</span><a class="headerlink" href="#lerp-fig" title="Link to this image">#</a></p>
 </figcaption>
