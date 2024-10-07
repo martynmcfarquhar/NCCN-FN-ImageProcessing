@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>What is Image Processing? &#8212; Image Processing</title>
   
@@ -29,33 +28,35 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '1.what-is';</script>
@@ -397,40 +398,40 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="what-is-image-processing">
-<h1>What is Image Processing?<a class="headerlink" href="#what-is-image-processing" title="Permalink to this heading">#</a></h1>
+<h1>What is Image Processing?<a class="headerlink" href="#what-is-image-processing" title="Link to this heading">#</a></h1>
 <p>The term <em>image processing</em> refers to the use of certain mathematical operations to enhance, manipulate or extract useful information from an image. This includes operations designed to change how the image appears, as well as operations designed to change the properties of the signal that underlies the image. As an example, if we were to take every voxel in the image and multiply their value by 5, we would get an image that would appear <em>brighter</em> than the original image when using the same colourmap, as shown in <a class="reference internal" href="#multiply-intensity-fig"><span class="std std-numref">Fig. 1</span></a>.</p>
 <figure class="align-default" id="multiply-intensity-fig">
 <a class="reference internal image-reference" href="_images/multiply-intensity.png"><img alt="_images/multiply-intensity.png" src="_images/multiply-intensity.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Example of multiplying each voxel value by 5 to increase the brightness of an image using a fixed colour map.</span><a class="headerlink" href="#multiply-intensity-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Example of multiplying each voxel value by 5 to increase the brightness of an image using a fixed colour map.</span><a class="headerlink" href="#multiply-intensity-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Alternatively, we could leave the values unaltered but instead move each voxel to a different location in the image. For instance, moving each voxel 15 steps to the right would shift the location of the brain relative to the bounding-box of the image, as shown in <a class="reference internal" href="#move-voxels-fig"><span class="std std-numref">Fig. 2</span></a>.</p>
 <figure class="align-default" id="move-voxels-fig">
 <a class="reference internal image-reference" href="_images/move-voxels.png"><img alt="_images/move-voxels.png" src="_images/move-voxels.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Example of moving each voxel value to shift the location of the brain relative to the bounds of the image.</span><a class="headerlink" href="#move-voxels-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Example of moving each voxel value to shift the location of the brain relative to the bounds of the image.</span><a class="headerlink" href="#move-voxels-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Both of these examples illustrate how we alter images in different ways by simply changing voxel values using some criteria. Sometimes we apply changes identically to each voxel and sometimes those changes depend on the voxel values themselves. Either way, the image is altered in some fashion to suit our needs. From this we can define two broad categories of transformations. Those which move the voxel values within the image can be classed as <em>spatial transformations</em>, whereas those which change the voxel values without moving them can be classed as <em>image filters</em>.</p>
 <section id="spatial-image-transformations">
-<h2>Spatial Image Transformations<a class="headerlink" href="#spatial-image-transformations" title="Permalink to this heading">#</a></h2>
+<h2>Spatial Image Transformations<a class="headerlink" href="#spatial-image-transformations" title="Link to this heading">#</a></h2>
 <p>Generally speaking, processing steps that move voxel values are concerned with how the voxel coordinates map onto the anatomy of the brain. The reason this is important is because a computer has no knowledge of anatomy. All the computer knows about are the voxel values and their coordinates within the data matrix. In order to derive any meaning from analysing an image, we have to make sure there is some meaningful correspondence between these coordinates and the anatomy of the brain.</p>
 <p>As an example, if we took two structural MR images straight from the scanner and selected voxel coordinates <span class="math notranslate nohighlight">\(\left[104, 167, 88\right]\)</span>, it is very unlikely that this voxel would correspond to the same anatomical location in both images. If we were to compare the voxel values from these coordinates across the two images then the comparison would be largely meaningless because of this lack of anatomical agreement. In order for there to be any meaningful connection between images, we need to spatially transform one of them by moving the voxel values around so that the same coordinates correspond to the same anatomical locations. This is illustrated in <a class="reference internal" href="#image-alignment-fig"><span class="std std-numref">Fig. 3</span></a>.</p>
 <figure class="align-default" id="image-alignment-fig">
 <a class="reference internal image-reference" href="_images/image-alignment.png"><img alt="_images/image-alignment.png" src="_images/image-alignment.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Illustration of how the same coordinates across two images are meaningless unless there is anatomical alignment between them. In the <em>top</em> row, the images are not aligned and thus the voxel values derived from the same coordinates are not useful because they correspond to different anatomical regions. In the <em>bottom</em> row, the images are aligned and thus voxel values from the same coordinates can be meaningfully compared.</span><a class="headerlink" href="#image-alignment-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Illustration of how the same coordinates across two images are meaningless unless there is anatomical alignment between them. In the <em>top</em> row, the images are not aligned and thus the voxel values derived from the same coordinates are not useful because they correspond to different anatomical regions. In the <em>bottom</em> row, the images are aligned and thus voxel values from the same coordinates can be meaningfully compared.</span><a class="headerlink" href="#image-alignment-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="image-filtering">
-<h2>Image Filtering<a class="headerlink" href="#image-filtering" title="Permalink to this heading">#</a></h2>
+<h2>Image Filtering<a class="headerlink" href="#image-filtering" title="Link to this heading">#</a></h2>
 <p>By comparison, processing steps that alter the voxel values without moving them are concerned with enacting some meaningful change to the signal that underlies the image. Unlike spatial transformations, these forms of processing have little care for what they make the image <em>look like</em>. Rather, the changes are performed in an attempt to improve the quality of the data, or to enhance/remove certain features of the image. An important thing to remember with filtering is that the quality of the data and the quality of the image are not necessarily the same thing. Many filtering steps can make an image look <em>worse</em>, but actually <em>improve</em> the quality of the numeric data that underlies the image. An example of this would be the Gaussian filter, which makes the image look blurrier but actually improves the data by reducing noise. Examples of filtering operations and their visual effects are shown in <a class="reference internal" href="#filter-examples-fig"><span class="std std-numref">Fig. 4</span></a>.</p>
 <figure class="align-default" id="filter-examples-fig">
 <a class="reference internal image-reference" href="_images/filter-examples.png"><img alt="_images/filter-examples.png" src="_images/filter-examples.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Example of both a Gaussian and Sobel filter applied to an anatomical MR image. In both cases, the filter makes the image look subjectively <em>worse</em>. However, useful properties of the signal that underlies the image have been enhanced in each example.</span><a class="headerlink" href="#filter-examples-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Example of both a Gaussian and Sobel filter applied to an anatomical MR image. In both cases, the filter makes the image look subjectively <em>worse</em>. However, useful properties of the signal that underlies the image have been enhanced in each example.</span><a class="headerlink" href="#filter-examples-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
