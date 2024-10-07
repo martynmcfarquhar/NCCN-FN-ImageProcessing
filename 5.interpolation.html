@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '5.interpolation';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -359,7 +361,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -375,6 +379,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbour-interpolation">Nearest-neighbour Interpolation</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -386,6 +398,34 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="interpolation">
 <h1>Interpolation<a class="headerlink" href="#interpolation" title="Link to this heading">#</a></h1>
+<p>In the previous sections, we looked at how to map coordinates between different spaces and saw how we could use this mapping to perform a transformation in voxel-space. However, during this step we glossed over quite an important detail. In the example, we showed how the voxel coordinates changed for a shift of 9mm. This was chosen very specifically to be an <em>exact multiple</em> of the voxel size. But what happens if we want to move the image by some other amount? What if we want to move the image by 8mm, or 3.75mm, or any other value that is not an exact multiple of the voxel size?</p>
+<p>To see what happens, first we will define a <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> to enact a translation of 8mm backwards along the <span class="math notranslate nohighlight">\(y\)</span>-axis</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{T} =
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; -8 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}.
+\end{split}\]</div>
+<p>We will define <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> in the same fashion as the previous section, and then transform the same coordinates <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> to give</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{Qa} = 
+\begin{bmatrix}
+20 \\
+22.667 \\
+20 \\
+1
+\end{bmatrix}.
+\end{split}\]</div>
+<p>Make sure you take a moment to consider why this result is problematic. Remembering that <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> transforms voxel coordinates from the <em>new</em> space into voxel coordinates from the <em>old</em> space, we have an issue because there is no voxel 22.667 in the original image. In fact, this cannot exist because voxel coordinates are indices into the data matrix and therefore cannot have fractional values. As such, if we wanted to use this <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> to created a voxel-space transformation, what can we do?</p>
+<p>The answer is that we have to <em>estimate</em> what value would be 66.7% of the way between voxels 22 and 23 in the original image. This estimation procedure is known as <em>interpolation</em> (sometimes called <em>resampling</em>, <em>regriding</em> or <em>reslicing</em>). When we interpolate a value we have to use the voxel values surrounding the desired point to make an informed decision about what value voxel 22.667 would have. This may sound unintuitive, given that voxel 22.667 does not exist. However, remember that when we measure the MR signal we are taking discrete samples of a signal that varies <em>continuously</em> across the brain. So, in reality, there would have been some value 66.7% of the way between our samples, we just did not measure it. As such, interpolation is about trying to recover the shape of the original signal so we can estimate what this value might have been, had we been able to measure it.</p>
+<section id="nearest-neighbour-interpolation">
+<h2>Nearest-neighbour Interpolation<a class="headerlink" href="#nearest-neighbour-interpolation" title="Link to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -442,6 +482,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbour-interpolation">Nearest-neighbour Interpolation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
