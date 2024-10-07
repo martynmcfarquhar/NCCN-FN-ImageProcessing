@@ -414,13 +414,25 @@ document.write(`
 \frac{1}{16} &amp; \frac{1}{8} &amp; \frac{1}{16} \\
 \frac{1}{8}  &amp; \frac{1}{4} &amp; \frac{1}{8}  \\
 \frac{1}{16} &amp; \frac{1}{8} &amp; \frac{1}{16}
-\end{bmatrix}
+\end{bmatrix}.
 \end{split}\]</div>
-<p>The values in the kernel are derived from a Gaussian distribution (also known as the <em>normal</em> distribution), which is easier to see when visualised in 3D, as shown in <a class="reference internal" href="#gauss-kern-fig"><span class="std std-numref">Fig. 15</span></a> for a <span class="math notranslate nohighlight">\(17 \times 17\)</span>  kernel</p>
+<p>The values in the kernel are derived from a Gaussian distribution (also known as the <em>normal</em> distribution), which is easier to see when visualised in 3D, as shown in <a class="reference internal" href="#gauss-kern-fig"><span class="std std-numref">Fig. 15</span></a> for a <span class="math notranslate nohighlight">\(17 \times 17\)</span>  kernel.</p>
 <figure class="align-default" id="gauss-kern-fig">
 <a class="reference internal image-reference" href="_images/gauss-kern.png"><img alt="_images/gauss-kern.png" src="_images/gauss-kern.png" style="width: 500px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 15 </span><span class="caption-text">Illustration of a <span class="math notranslate nohighlight">\(17 \times 17\)</span> Gaussian kernel.</span><a class="headerlink" href="#gauss-kern-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Note that the <em>width</em> of a normal distribution is usually controlled by its <em>standard deviation</em> (represented by <span class="math notranslate nohighlight">\(\sigma\)</span>). In neuroimaging, however, it is more typical to talk about the <em>Full Width at Half Maximum</em> (FWHM) value in the context of a smoothing kernel. This value gives the number of voxels the kernel covers at half its height, as illustrated in {numref}``. Parameterising the kernel in this fashion means we can think about the coverage of the kernel more intuitively in terms of voxels. The standard deviation and FWHM are connected, as shown by the formula</p>
+<div class="math notranslate nohighlight">
+\[
+\text{FWHM} = 2\sqrt{2\ln{2}}\sigma \approx 2.355 \sigma.
+\]</div>
+<p>You do not need to memorise this, but it is just useful to know that the two concepts are connected.</p>
+<figure class="align-default" id="fwhm-fig">
+<a class="reference internal image-reference" href="_images/FWHM.png"><img alt="_images/FWHM.png" src="_images/FWHM.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Illustration of how the FWHM is defined in terms of a Gaussian distribution.</span><a class="headerlink" href="#fwhm-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
