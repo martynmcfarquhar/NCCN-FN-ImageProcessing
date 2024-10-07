@@ -359,7 +359,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -375,6 +377,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution">Convolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filters-in-the-frequency-domain">Filters in the Frequency Domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothing-in-spm">Smoothing in SPM</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -386,7 +399,20 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="image-filtering">
 <h1>Image Filtering<a class="headerlink" href="#image-filtering" title="Link to this heading">#</a></h1>
+<section id="kernels">
+<h2>Kernels<a class="headerlink" href="#kernels" title="Link to this heading">#</a></h2>
+</section>
+<section id="convolution">
+<h2>Convolution<a class="headerlink" href="#convolution" title="Link to this heading">#</a></h2>
+</section>
+<section id="filters-in-the-frequency-domain">
+<h2>Filters in the Frequency Domain<a class="headerlink" href="#filters-in-the-frequency-domain" title="Link to this heading">#</a></h2>
+<p>It is also possible to view filters within the <em>frequency</em>-domain. Here, we think about how filters affect both high-frequency and low-frequency spatial information … This perspective is not all that important for our current purpose, but can be an interesting alternative conceptualisation of how image filters work. This is described in more detail within the advanced drop-down menu below.</p>
+</section>
+<section id="smoothing-in-spm">
+<h2>Smoothing in SPM<a class="headerlink" href="#smoothing-in-spm" title="Link to this heading">#</a></h2>
 <div style="max-width: 1280px"><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"><iframe src="https://livemanchesterac.sharepoint.com/sites/UOM-FBMH-MSc-NCCN/_layouts/15/embed.aspx?UniqueId=f0c1d6dc-a9a5-49fe-a08d-ae4d1c7aee5e&embed=%7B%22hvm%22%3Atrue%2C%22ust%22%3Atrue%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="1280" height="720" frameborder="0" scrolling="no" allowfullscreen title="SPM-Smoothing.mov" style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div></section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -442,6 +468,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution">Convolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filters-in-the-frequency-domain">Filters in the Frequency Domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothing-in-spm">Smoothing in SPM</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
