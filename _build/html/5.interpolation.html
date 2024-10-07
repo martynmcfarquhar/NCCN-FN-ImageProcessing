@@ -457,6 +457,14 @@ v_{\text{LIN}} = \frac{(23 - 22.667)5 + (22.667 - 22)7}{23 - 22} = 6.334,
 <p><span class="caption-number">Fig. 11 </span><span class="caption-text">Illustration of linear interpolation in 2D (often called <em>bilinear</em> interpolation).</span><a class="headerlink" href="#lerp-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<p>This process can be generalise to 3D (termed <em>trilinear</em> interpolation) by doing a bilinear interpolation in the slice above and below the fractional coordinates, and then doing a linear interpolation between the results of the bilinear interpolations.</p>
+<p>Linear interpolation is visualised in <a class="reference internal" href="#interp-lin-fig"><span class="std std-numref">Fig. 12</span></a>. Notice how in the graph the dotted lines show a smoother transition from one value to another compared to nearest-neighbour interpolation. This smoothness is reflected in the much smoother appearance of the image on the right. This visual improvement of linear interpolation over nearest-neighbour is why this method is often favoured for visualising images. However, thinking back to the idea of recreating the original spatial signal, linear interpolation is still soemwhat inaccurate, as it is unlikely that the original spatial signal consisted of perfectly straight lines between the chosen sampled points. As such, linear interpolation is more accurate that nearest-neighbour from a visual perspective, but could still be improved from a signal-recreation perspective.</p>
+<figure class="align-default" id="interp-lin-fig">
+<a class="reference internal image-reference" href="_images/interp-lin.png"><img alt="_images/interp-lin.png" src="_images/interp-lin.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Illustration of linear interpolation applied in 1D (<em>left</em>) and to an image (<em>right</em>).</span><a class="headerlink" href="#interp-lin-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 
