@@ -386,8 +386,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution">Convolution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filters-in-the-frequency-domain">Filters in the Frequency Domain</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothing-in-spm">Smoothing in SPM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filters-in-the-frequency-domain">Filters in the Frequency Domain</a></li>
 </ul>
             </nav>
         </div>
@@ -445,13 +445,21 @@ document.write(`
 </section>
 <section id="convolution">
 <h2>Convolution<a class="headerlink" href="#convolution" title="Link to this heading">#</a></h2>
+<p>As mentioned above, the process of multiplying a kernel and an image to produce a new value is an example of a more general mathematical procedure called <em>convolution</em>. This is a procedure that we are going to encounter in a few places on this course, so it is worth a little bit of time discussing it now. To formalise this, the 1D convolution of a Gaussian kernel (<span class="math notranslate nohighlight">\(g\)</span>) and an image (<span class="math notranslate nohighlight">\(i\)</span>) at voxel <span class="math notranslate nohighlight">\(n\)</span> would be written as</p>
+<div class="math notranslate nohighlight">
+\[
+(i \ast g)[n] = \sum_{m = -M}^{M} i[n-m]g[m]
+\]</div>
+<p>where the indices of the kernel run from <span class="math notranslate nohighlight">\(-M\)</span> to <span class="math notranslate nohighlight">\(M\)</span>. All this means is that you should work through all the voxels that overlap between the kernel and the image, calculate the product of the overlapping values and then add them together.</p>
+<p>The main thing to understand in the formula above is that <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(g\)</span> could be <em>any functions</em>. Convolution is a very general process that creates a new function from two input functions. In our example, the new function is the smoothed spatial signal and the inputs are the un-smoothed spatial signal and the kernel. However, these could be anything. For example, the GIF below shows the convolution of a square function and curved-triangle function.</p>
+<iframe url=https://upload.wikimedia.org/wikipedia/commons/b/b9/Convolution_of_spiky_function_with_box2.gif></iframe>
+</section>
+<section id="smoothing-in-spm">
+<h2>Smoothing in SPM<a class="headerlink" href="#smoothing-in-spm" title="Link to this heading">#</a></h2>
 </section>
 <section id="filters-in-the-frequency-domain">
 <h2>Filters in the Frequency Domain<a class="headerlink" href="#filters-in-the-frequency-domain" title="Link to this heading">#</a></h2>
 <p>It is also possible to view filters within the <em>frequency</em>-domain. Here, we think about how filters affect both high-frequency and low-frequency spatial information … This perspective is not all that important for our current purpose, but can be an interesting alternative conceptualisation of how image filters work. This is described in more detail within the advanced drop-down menu below.</p>
-</section>
-<section id="smoothing-in-spm">
-<h2>Smoothing in SPM<a class="headerlink" href="#smoothing-in-spm" title="Link to this heading">#</a></h2>
 <div style="max-width: 1280px"><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"><iframe src="https://livemanchesterac.sharepoint.com/sites/UOM-FBMH-MSc-NCCN/_layouts/15/embed.aspx?UniqueId=f0c1d6dc-a9a5-49fe-a08d-ae4d1c7aee5e&embed=%7B%22hvm%22%3Atrue%2C%22ust%22%3Atrue%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="1280" height="720" frameborder="0" scrolling="no" allowfullscreen title="SPM-Smoothing.mov" style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div></section>
 </section>
 
@@ -521,8 +529,8 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution">Convolution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filters-in-the-frequency-domain">Filters in the Frequency Domain</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothing-in-spm">Smoothing in SPM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filters-in-the-frequency-domain">Filters in the Frequency Domain</a></li>
 </ul>
   </nav></div>
 
