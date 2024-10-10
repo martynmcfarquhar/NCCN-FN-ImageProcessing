@@ -455,7 +455,7 @@ document.write(`
 </section>
 <section id="transforming-an-image-in-voxel-space">
 <h2>Transforming an Image in Voxel-space<a class="headerlink" href="#transforming-an-image-in-voxel-space" title="Link to this heading">#</a></h2>
-<p>As highlighted above, transforming and replacing the header matrix will not alter the voxel data. If we wanted this transformation to change the actual image data, we would need to turn this into a <em>voxel-space</em> transformation. The motivation for this is usually in the context of image registration and so will become clearer next week. The short version is that we usually map between different images in world-space, but once we have transformed the actual image data we do not need to perform this mapping anymore and can work exclusively in voxel-space. Computationally, this is much more efficient because we do not need to keep converting coordinates between different images. You can therefore think of the voxel-space transforming as <em>applying</em> the world-space transformation to the actual data.</p>
+<p>As highlighted above, transforming and replacing the header matrix will not alter the voxel data. If we wanted this transformation to change the actual image data, we would need to turn this into a <em>voxel-space</em> transformation. The motivation for this is usually in the context of image registration and so will become clearer next week. For the moment, you can simply think of a voxel-space transforming as <em>applying</em> the world-space transformation to the actual data.</p>
 <p>Converting a world-space transformation into a voxel-space transformation can be achieved by defining the following mapping matrix</p>
 <div class="math notranslate nohighlight">
 \[
