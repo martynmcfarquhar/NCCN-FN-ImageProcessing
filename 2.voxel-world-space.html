@@ -438,7 +438,7 @@ document.write(`
 <section id="voxel-space">
 <h2>Voxel-space<a class="headerlink" href="#voxel-space" title="Link to this heading">#</a></h2>
 <p>The approach of indexing the data matrix directly can be thought of as representing the image in <em>voxel-space</em>. This means that the voxels themselves form the coordinate system. The image dimensions are given in voxels, we index the image using voxel coordinates and the origin of the coordinate system is simply the first voxel saved in the image file.</p>
-<p>Of note is that the orientation of the image is based on the storage-order of the data on disk. This is usually dictated by the scanner and can differ from image to image. As such, there are no guarantees about which direction in the image correspond to which dimensions of the data matrix. For example, if we display a single slice of the example image we loaded above, we get</p>
+<p>Perhaps most notable about voxel-space is that the orientation of the image is based on the storage-order of the data on disk. This is usually dictated by the scanner and can differ from image to image. As such, there are no guarantees about which direction in the image correspond to which dimensions of the data matrix. For example, if we display a single slice of the example image we loaded above, we get</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">figure</span><span class="p">;</span>
